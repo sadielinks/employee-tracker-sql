@@ -2,23 +2,22 @@
   "name": "employee-mgmt-system-12",
   "version": "1.0.0",
   "description": "By: Sadie Sial",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sadielinks/employee-tracker-sql.git"
   },
   "author": "Sadie Sial",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sadielinks/employee-tracker-sql/issues"
   },
   "homepage": "https://github.com/sadielinks/employee-tracker-sql#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "exports": "^0.0.1",
     "mysql2": "^2.3.0"
   }
 }
