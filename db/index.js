@@ -2,7 +2,7 @@
 const { connect } = require('./connection');
 const connection = require('./connection')
 
-// queries
+// queries - dept, salaries, each data search
 class DB {
     constructor (connection){
         this.connection = connection;

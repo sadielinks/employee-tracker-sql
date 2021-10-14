@@ -14,11 +14,11 @@ function init() {
         message: 'What would you like to do?',
         choices: [
             {
-                name: 'View all department names'
+                name: 'View all department names',
                 value: 'view_departments',
             },
             {
-                name: 'View all employee names'
+                name: 'View all employee names',
                 value: 'view_employees',
             }
         ]
@@ -39,3 +39,4 @@ function init() {
 init();
 
 // .then will have switch case
+// function to view employee + their data

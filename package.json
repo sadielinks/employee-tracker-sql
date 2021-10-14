@@ -18,6 +18,8 @@
   "homepage": "https://github.com/sadielinks/employee-tracker-sql#readme",
   "dependencies": {
     "exports": "^0.0.1",
-    "mysql2": "^2.3.0"
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.0",
+    "require": "^2.4.20"
   }
 }
