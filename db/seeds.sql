@@ -1,1 +1,2 @@
-/* build these
+INSERT INTO department (name)
+VALUE ('Finance'), 
