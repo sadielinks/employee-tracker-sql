@@ -1,2 +1,2 @@
 INSERT INTO department (name)
-VALUE ('Finance'), 
+VALUE ('Orthopedics'), ('Research Administration'), ('Oncology'), ('Neurology'), ('Radiology')
