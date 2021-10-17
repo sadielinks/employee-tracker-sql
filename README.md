@@ -70,7 +70,6 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 The technologies used to create this program were: 
 - Javascript
-- Dynamic HTML
 - Node.JS
 - MySQL
 <br><br>
@@ -89,6 +88,7 @@ Command Line question/answer:
 ```
 Walkthrough Video:
 ```
+
 
 <br>
 
