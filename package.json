@@ -20,6 +20,6 @@
     "exports": "^0.0.1",
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.0",
-    "require": "^2.4.20"
+    "require": "^0.4.4"
   }
 }

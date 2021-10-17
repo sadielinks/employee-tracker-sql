@@ -10,7 +10,7 @@ function init() {
     .prompt([
     {
         type: 'list',
-        name: 'name',
+        name: 'main_menu',
         message: 'What would you like to do?',
         choices: [
             {
@@ -18,9 +18,38 @@ function init() {
                 value: 'view_departments',
             },
             {
+                name: 'View all roles names',
+                value: 'view_roles',
+            },
+            {
                 name: 'View all employee names',
                 value: 'view_employees',
-            }
+            },
+            {
+                name: 'Add a department',
+                value: 'add_deptartment',
+            },
+            {
+                name: 'Add a role ',
+                value: 'add_',
+            },
+            {
+                name: 'View all employee names',
+                value: 'view_employees',
+            },
+            {
+                name: 'View all employee names',
+                value: 'view_employees',
+            },
+            {
+                name: 'View all employee names',
+                value: 'view_employees',
+            },
+            {
+                name: 'View all employee names',
+                value: 'view_employees',
+            },
+
         ]
     }
     ]) .then(res => {
