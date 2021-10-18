@@ -14,42 +14,37 @@ function init() {
         message: 'What would you like to do?',
         choices: [
             {
-                name: 'View all department names',
-                value: 'view_departments',
+                name: 'view_departments',
+                message: 'View all department names',
             },
             {
-                name: 'View all roles names',
-                value: 'view_roles',
+                name: 'view_roles',
+                message: 'View all roles',
             },
             {
-                name: 'View all employee names',
-                value: 'view_employees',
+                name: 'view_employees',
+                message: 'View all employees',
             },
             {
-                name: 'Add a department',
-                value: 'add_deptartment',
+                name: 'add_department',
+                message: 'Add a department',
             },
             {
-                name: 'Add a role ',
-                value: 'add_',
+                name: 'add_roles',
+                message: 'Add a role',
             },
             {
-                name: 'View all employee names',
-                value: 'view_employees',
+                name: 'add_employee',
+                message: 'Add an employee',
             },
             {
-                name: 'View all employee names',
-                value: 'view_employees',
+                name: 'update_role',
+                message: 'Update a role',
             },
             {
-                name: 'View all employee names',
-                value: 'view_employees',
+                name: 'exit',
+                message: 'Exit'
             },
-            {
-                name: 'View all employee names',
-                value: 'view_employees',
-            },
-
         ]
     }
     ]) .then(res => {
