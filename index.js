@@ -34,12 +34,12 @@ function init() {
                 message: 'Add a role',
             },
             {
-                name: 'add_employee',
-                message: 'Add an employee',
-            },
-            {
                 name: 'update_role',
                 message: 'Update a role',
+            },
+            {
+                name: 'add_employee',
+                message: 'Add an employee',
             },
             {
                 name: 'exit',
@@ -47,6 +47,7 @@ function init() {
             },
         ]
     }
+    // switch case to call the corresponding fx per the user's selection
     ]) .then(res => {
         switch (res.choice){
             case 'view_departments':
@@ -62,5 +63,28 @@ function init() {
 
 init();
 
-// .then will have switch case
-// function to view employee + their data
+// Fx to view department(s)
+
+
+
+// Fx to add department(s)
+
+
+
+// Fx to view employee(s)
+
+
+
+// Fx to add employee(s)
+
+
+
+// Fx to view role(s)
+
+
+
+// Fx to update role(s)
+
+
+
+// Fx to add role(s)
