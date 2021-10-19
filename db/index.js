@@ -7,6 +7,9 @@ class DB {
   constructor(connection) {
     this.connection = connection;
   }
+  view_departments() {
+    return this.connection.query('SELECT * FROM department')
+  }
 }
 
 class Employee {
