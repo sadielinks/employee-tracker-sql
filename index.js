@@ -1,8 +1,7 @@
+const mysql = require('mysql2')
 const inquirer = require('inquirer');
-const db = require('./db')
-require('console.table')
-// already connected but otherwise this would be req.
-// const mysql = require('mysql2')
+const db = require('./db');
+const consoleTable = require('console.table');
 
 // func init - set up prompt ask the inq Q's
 function init() {
