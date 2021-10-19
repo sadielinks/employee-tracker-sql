@@ -95,7 +95,13 @@ function init() {
 init();
 
 // Fx to view department(s)
-
+function viewDepartments() {
+    console.log('Now viewing all departments:');
+    connection.query('SELECT * FROM department;', function (err, data) {
+      console.table(data);
+    });
+    connection.end();
+  }
 
 
 // Fx to add department(s)
