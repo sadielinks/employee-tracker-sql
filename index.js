@@ -116,6 +116,16 @@ function viewEmployees() {
 
 // Fx to add role(s)
 function addRoles() {
+    inquirer
+    .prompt([
+        {
+            type:,
+            name:,
+            message:,
+            choices:,
+        }
+    ])
+
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
       console.log('Added new role!');
