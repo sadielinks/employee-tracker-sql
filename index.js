@@ -26,20 +26,16 @@ function init() {
                 message: 'View all employees',
             },
             {
-                name: 'add_department',
-                message: 'Add a department',
-            },
-            {
                 name: 'add_roles',
                 message: 'Add a role',
             },
             {
-                name: 'edit_role',
-                message: 'Edit a role',
-            },
-            {
                 name: 'add_employee',
                 message: 'Add an employee',
+            },
+            {
+                name: 'edit_role',
+                message: 'Edit a role',
             },
             {
                 name: 'edit_employee',
@@ -66,20 +62,16 @@ function init() {
                 viewEmployees ();
                 break;
 
-            case 'add_departments':
-                addDepartments ();
-                break;
-
             case 'add_roles':
                 addRoles ();
                 break;
 
-            case 'edit_roles':
-                editRoles ();
-                break;
-
             case 'add_employees':
                 addEmployees ();
+                break;
+            
+            case 'edit_roles':
+                editRoles ();
                 break;
 
             case 'edit_employees':
@@ -104,8 +96,8 @@ function viewDepartments() {
     Connection.end();
   };
 
-// Fx to add department(s)
-function addDepartments() {
+// Fx to view role(s)
+function viewRoles() {
     console.log('Now viewing all roles:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
@@ -122,16 +114,14 @@ function viewEmployees() {
     Connection.end();
   };
 
-
-// Fx to edit employee(s)
-function editEmployees() {
-    console.log('Please edit from the following:');
+// Fx to add role(s)
+function addRoles() {
+    console.log('Now adding a new role:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
     });
     Connection.end();
   };
-
 
 // Fx to add employee(s)
 function addEmployees() {
@@ -142,17 +132,6 @@ function addEmployees() {
     Connection.end();
   };
 
-
-// Fx to view role(s)
-function viewRoles() {
-    console.log('Now viewing all roles:');
-    Connection.query('SELECT ;', function (err, data) {
-      console.table(data);
-    });
-    Connection.end();
-  };
-
-
 // Fx to edit role(s)
 function editRoles() {
     console.log('Please edit from the following:');
@@ -162,16 +141,14 @@ function editRoles() {
     Connection.end();
   };
 
-
-// Fx to add role(s)
-function addRoles() {
-    console.log('Now adding a new role:');
+// Fx to edit employee(s)
+function editEmployees() {
+    console.log('Please edit from the following:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
     });
     Connection.end();
   };
-
 
 // Fx to exit
 function exit() {
