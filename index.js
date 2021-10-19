@@ -202,8 +202,23 @@ function addRoles() {
 
 // Fx to edit role(s)
 function editRoles() {
-    
-    
+    inquirer
+    .prompt ([
+    {
+        type: 'input',
+        name: '',
+    },
+    {
+
+    },
+    {
+
+    },
+    {
+
+    },
+    ])
+
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
       console.log('Edited employee role!');
@@ -233,7 +248,7 @@ function editEmployees() {
 
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
-      console.log('Edited employee!');
+      console.log('Edited employee info!');
     });
     Connection.end();
   };
