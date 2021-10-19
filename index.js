@@ -2,6 +2,7 @@ const mysql = require('mysql2')
 const inquirer = require('inquirer');
 const db = require('./db');
 const consoleTable = require('console.table');
+const Connection = require('./db/connection');
 
 // func init - set up prompt ask the inq Q's
 function init() {
@@ -65,7 +66,7 @@ function init() {
                 viewEmployees ();
                 break;
 
-            case 'add_department':
+            case 'add_departments':
                 addDepartments ();
                 break;
 
@@ -73,16 +74,16 @@ function init() {
                 addRoles ();
                 break;
 
-            case 'edit_role':
+            case 'edit_roles':
                 editRoles ();
                 break;
 
-            case 'add_employee':
-                addEmployee ();
+            case 'add_employees':
+                addEmployees ();
                 break;
 
-            case 'edit_employee':
-                editEmployee ();
+            case 'edit_employees':
+                editEmployees ();
                 break;
 
             case 'exit':
@@ -90,46 +91,90 @@ function init() {
                 break;
         }
     })
-}
+};
 
 init();
 
 // Fx to view department(s)
 function viewDepartments() {
     console.log('Now viewing all departments:');
-    connection.query('SELECT * FROM department;', function (err, data) {
+    Connection.query('SELECT ;', function (err, data) {
       console.table(data);
     });
-    connection.end();
-  }
-
+    Connection.end();
+  };
 
 // Fx to add department(s)
-
-
+function addDepartments() {
+    console.log('Now viewing all roles:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 // Fx to view employee(s)
-
+function viewEmployees() {
+    console.log('Now viewing all employees:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to edit employee(s)
-
+function editEmployees() {
+    console.log('Please edit from the following:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to add employee(s)
-
+function addEmployees() {
+    console.log('Now adding a new employee');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to view role(s)
-
+function viewRoles() {
+    console.log('Now viewing all roles:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to edit role(s)
-
+function editRoles() {
+    console.log('Please edit from the following:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to add role(s)
-
+function addRoles() {
+    console.log('Now adding a new role:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
+  };
 
 
 // Fx to exit
+function exit() {
+    console.log('Now exiting, goodbye!');
+    Connection.end();
+  };
