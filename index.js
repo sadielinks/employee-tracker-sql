@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const db = require('./db');
 const consoleTable = require('console.table');
 const Connection = require('./db/connection');
+const { connection } = require('./db');
 
 // inquirer Q's
 function init() {
@@ -119,19 +120,34 @@ function addRoles() {
     inquirer
     .prompt([
         {
-            type:,
-            name:,
-            message:,
-            choices:,
-        }
+            type: 'input',
+            name: '',
+            message: 'Which department you want to add to?',
+            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
+        },
+        {
+            type: 'input',
+            name: 'role_name',
+            message: 'What is the name of the new role?'
+        },
+        {
+            type: 'input',
+            name: 'role_salary',
+            message: 'What is the salary for this role?'
+        },
     ])
 
-    Connection.query('SELECT ;', function (err, data) {
-      console.table(data);
-      console.log('Added new role!');
-    });
+    .then(function (answer) {
+    Connection.query (
+        'INSERT INTO role ',
+        function (err, data) {
+            console.table(data);
+            console.log('Added new role!');
+        }
+    );
     Connection.end();
-  };
+    });}
+    
 
 // Fx to add employee(s)
 function addEmployees() {
