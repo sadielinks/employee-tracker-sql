@@ -126,17 +126,17 @@ function addRoles() {
             type: 'input',
             name: 'role_dept',
             message: 'Which department you want to add to?',
-            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
+            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration'],
         },
         {
             type: 'input',
             name: 'role_name',
-            message: 'What is the name of the new role?'
+            message: 'What is the name of the new role?',
         },
         {
             type: 'input',
             name: 'role_salary',
-            message: 'What is the salary for this role?'
+            message: 'What is the salary for this role?',
         },
     ])
 
@@ -164,28 +164,28 @@ function addRoles() {
         {
             type: 'input',
             name: 'employee_id',
-            message: 'What will be their ID?'
+            message: 'What will be their ID?',
         },
         {
             type: 'input',
             name: 'employee_first_name',
-            message: 'What is their first name?'
+            message: 'What is their first name?',
         },
         {
             type: 'input',
             name: 'employee_last_name',
-            message: 'What is their last name?'
+            message: 'What is their last name?',
         },
         {
             type: 'input',
             name: 'employee_salary',
-            message: 'What will be their salary?'
+            message: 'What will be their salary?',
         },
         {
             // ****** figure out how to build choices of current managers...?
             type: 'input',
             name: 'employee_manager',
-            message: 'Who will be their manager?'
+            message: 'Who will be their manager?',
         },
     ])
 
@@ -206,7 +206,8 @@ function editRoles() {
     .prompt ([
     {
         type: 'input',
-        name: '',
+        name: 'edit_roles',
+        message: '',
     },
     {
 
