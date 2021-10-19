@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sadielinks/employee-tracker-sql#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
     "exports": "^0.0.1",
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.0",
