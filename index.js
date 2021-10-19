@@ -34,12 +34,16 @@ function init() {
                 message: 'Add a role',
             },
             {
-                name: 'update_role',
-                message: 'Update a role',
+                name: 'edit_role',
+                message: 'Edit a role',
             },
             {
                 name: 'add_employee',
                 message: 'Add an employee',
+            },
+            {
+                name: 'edit_employee',
+                message: 'Edit an employee',
             },
             {
                 name: 'exit',
@@ -54,9 +58,37 @@ function init() {
                 viewDepartments ();
                 break;
 
+            case 'view_roles':
+                viewRoles ();
+                break;
+
             case 'view_employees':
                 viewEmployees ();
-                break
+                break;
+
+            case 'add_department':
+                addDepartments ();
+                break;
+
+            case 'add_roles':
+                addRoles ();
+                break;
+
+            case 'edit_role':
+                editRoles ();
+                break;
+
+            case 'add_employee':
+                addEmployee ();
+                break;
+
+            case 'edit_employee':
+                editEmployee ();
+                break;
+
+            case 'exit':
+                exit ();
+                break;
         }
     })
 }
@@ -75,6 +107,10 @@ init();
 
 
 
+// Fx to edit employee(s)
+
+
+
 // Fx to add employee(s)
 
 
@@ -83,8 +119,12 @@ init();
 
 
 
-// Fx to update role(s)
+// Fx to edit role(s)
 
 
 
 // Fx to add role(s)
+
+
+
+// Fx to exit
