@@ -120,7 +120,7 @@ function addRoles() {
     .prompt([
         {
             type: 'input',
-            name: '',
+            name: 'role_dept',
             message: 'Which department you want to add to?',
             choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
         },
@@ -153,19 +153,24 @@ function addRoles() {
     .prompt([
         {
             type: 'input',
-            name: '',
-            message: 'Which department you want to add to?',
+            name: 'employee_dept',
+            message: 'Which department will this employee be in?',
             choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
         },
         {
             type: 'input',
-            name: 'role_name',
-            message: 'What is the name of the new role?'
+            name: 'employee_first_name',
+            message: 'What is their first name?'
         },
         {
             type: 'input',
-            name: 'role_salary',
-            message: 'What is the salary for this role?'
+            name: 'employee_last_name',
+            message: 'What is their last name?'
+        },
+        {
+            type: 'input',
+            name: 'employee_salary',
+            message: 'What is their salary?'
         },
     ])
 
