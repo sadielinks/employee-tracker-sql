@@ -121,7 +121,7 @@ function viewEmployees() {
 // Fx to add role(s)
 function addRoles() {
     inquirer
-    .prompt([
+    .prompt ([
         {
             type: 'input',
             name: 'role_dept',
@@ -154,7 +154,7 @@ function addRoles() {
 // Fx to add employee(s)
   function addEmployees() {
     inquirer
-    .prompt([
+    .prompt ([
         {
             type: 'input',
             name: 'employee_dept',
@@ -202,7 +202,8 @@ function addRoles() {
 
 // Fx to edit role(s)
 function editRoles() {
-    console.log('Please edit from the following:');
+    
+    
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
       console.log('Edited employee role!');
@@ -212,7 +213,24 @@ function editRoles() {
 
 // Fx to edit employee(s)
 function editEmployees() {
-    console.log('Please edit from the following:');
+    inquirer
+    .prompt ([
+    {
+        type: 'input',
+        name: '',
+    },
+    {
+
+    },
+    {
+
+    },
+    {
+
+    },
+    ])
+
+
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
       console.log('Edited employee!');
