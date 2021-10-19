@@ -1,8 +1,6 @@
-const mysql = require('mysql2')
 const inquirer = require('inquirer');
 const db = require('./db');
 const consoleTable = require('console.table');
-const Connection = require('./db/connection');
 
 // inquirer Q's
 function init() {
