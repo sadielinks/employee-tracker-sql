@@ -4,7 +4,7 @@ const db = require('./db');
 const consoleTable = require('console.table');
 const Connection = require('./db/connection');
 
-// func init - set up prompt ask the inq Q's
+// inquirer Q's
 function init() {
     inquirer
     .prompt([
@@ -116,18 +116,18 @@ function viewEmployees() {
 
 // Fx to add role(s)
 function addRoles() {
-    console.log('Now adding a new role:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
+      console.log('Added new role!');
     });
     Connection.end();
   };
 
 // Fx to add employee(s)
 function addEmployees() {
-    console.log('Now adding a new employee');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
+      console.log('Added new employee!');
     });
     Connection.end();
   };
@@ -137,6 +137,7 @@ function editRoles() {
     console.log('Please edit from the following:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
+      console.log('Edited employee role!');
     });
     Connection.end();
   };
@@ -146,6 +147,7 @@ function editEmployees() {
     console.log('Please edit from the following:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
+      console.log('Edited employee!');
     });
     Connection.end();
   };
