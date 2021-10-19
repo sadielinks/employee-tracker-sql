@@ -15,6 +15,7 @@ function init() {
         choices: [
             {
                 name: 'view_departments',
+                // ****** check if this is the correct set up?
                 message: 'View all department names',
             },
             {
@@ -89,6 +90,7 @@ init();
 
 // Fx to view department(s)
 function viewDepartments() {
+    // ****** figure SELECT statements
     console.log('Now viewing all departments:');
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
@@ -99,6 +101,7 @@ function viewDepartments() {
 // Fx to view role(s)
 function viewRoles() {
     console.log('Now viewing all roles:');
+    // ****** figure SELECT statements
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
     });
@@ -108,6 +111,7 @@ function viewRoles() {
 // Fx to view employee(s)
 function viewEmployees() {
     console.log('Now viewing all employees:');
+    // ****** figure SELECT statements
     Connection.query('SELECT ;', function (err, data) {
       console.table(data);
     });
@@ -159,6 +163,11 @@ function addRoles() {
         },
         {
             type: 'input',
+            name: 'employee_id',
+            message: 'What will be their ID?'
+        },
+        {
+            type: 'input',
             name: 'employee_first_name',
             message: 'What is their first name?'
         },
@@ -170,7 +179,13 @@ function addRoles() {
         {
             type: 'input',
             name: 'employee_salary',
-            message: 'What is their salary?'
+            message: 'What will be their salary?'
+        },
+        {
+            // ****** figure out how to build choices of current managers...?
+            type: 'input',
+            name: 'employee_manager',
+            message: 'Who will be their manager?'
         },
     ])
 
