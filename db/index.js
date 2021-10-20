@@ -10,20 +10,29 @@ class DB {
   view_departments() {
     return this.connection.query('SELECT * FROM department')
   }
-}
-
-class Employee {
-  constructor() {
-    this.department;
-    this.department_id;
-    this.title;
-    this.first_name;
-    this.last_name;
-    this.salary;
-    this.role_id;
-    this.manager_id;
+  view_roles() {
+    return this.connection.query('SELECT * FROM role')
   }
-}
+  view_employees() {
+    return this.connection.query('SELECT * FROM employee')
+  }
+  add_roles() {
+    return this.connection.query('SELECT ')
+  }
+  add_employees() {
+    return this.connection.query('SELECT ')
+  }
+  edit_roles() {
+    return this.connection.query('SELECT ')
+  }
+  edit_employees() {
+    return this.connection.query('SELECT ')
+  }
+  exit() {
+    return this.connection.query('')
+  } 
+};
+
 
 module.exports = new DB(connection);
 // OUTSIDE const INSIDE class
