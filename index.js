@@ -11,7 +11,7 @@ function init() {
         name: 'main_menu',
         message: 'What would you like to do?',
         choices: [
-                'View all department',
+                'View all departments',
                 'View all roles',
                 'View all employees',
                 'Add a role',
@@ -24,7 +24,7 @@ function init() {
     // switch case to call the corresponding fx per the user's selection
     ]) .then(res => {
         switch (res.choice){
-            case 'View all department':
+            case 'View all departments':
                 viewDepartments ();
                 break;
 
