@@ -63,18 +63,16 @@ init();
 
 // Fx to view department(s)
 function viewDepartments() {
-    db.view_departments()
-    .then(([rows]) => {
-        console.table(rows)
-    })
-
-
-    // ****** figure SELECT statements
-    // console.log('Now viewing all departments:');
-    // Connection.query('SELECT ;', function (err, data) {
-    //   console.table(data);
-    // });
-    // Connection.end();
+    // db.view_departments()
+    // .then(([rows]) => {
+    //     console.table(rows)
+    // })
+   // ****** figure SELECT statements
+    console.log('Now viewing all departments:');
+    Connection.query('SELECT ;', function (err, data) {
+      console.table(data);
+    });
+    Connection.end();
   };
 
 // Fx to view role(s)
