@@ -11,73 +11,48 @@ function init() {
         name: 'main_menu',
         message: 'What would you like to do?',
         choices: [
-            {
-                name: 'view_departments',
-                // ****** check if this is the correct set up?
-                name: 'View all department names',
-            },
-            {
-                name: 'view_roles',
-                message: 'View all roles',
-            },
-            {
-                name: 'view_employees',
-                message: 'View all employees',
-            },
-            {
-                name: 'add_roles',
-                message: 'Add a role',
-            },
-            {
-                name: 'add_employee',
-                message: 'Add an employee',
-            },
-            {
-                name: 'edit_role',
-                message: 'Edit a role',
-            },
-            {
-                name: 'edit_employee',
-                message: 'Edit an employee',
-            },
-            {
-                name: 'exit',
-                message: 'Exit'
-            },
+                'View all department',
+                'View all roles',
+                'View all employees',
+                'Add a role',
+                'Add an employee',
+                'Edit a role',
+                'Edit an employee',
+                'Exit',
         ]
     }
     // switch case to call the corresponding fx per the user's selection
     ]) .then(res => {
         switch (res.choice){
-            case 'view_departments':
+            case 'View all department':
                 viewDepartments ();
                 break;
 
-            case 'view_roles':
+            case 'View all roles':
                 viewRoles ();
                 break;
 
-            case 'view_employees':
+            case 'View all employees':
                 viewEmployees ();
                 break;
 
-            case 'add_roles':
+            case 'Add a role':
                 addRoles ();
                 break;
 
-            case 'add_employees':
+            case 'Add an employee':
                 addEmployees ();
                 break;
             
-            case 'edit_roles':
+            case 'Edit a role':
                 editRoles ();
                 break;
 
-            case 'edit_employees':
+            case 'Edit an employee':
                 editEmployees ();
                 break;
 
-            case 'exit':
+            case 'Exit':
                 exit ();
                 break;
         }
