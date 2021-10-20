@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const db = require('./db');
-const consoleTable = require('console.table');
+const conTable = require('console.table');
 
 // inquirer Q's
 function init() {
@@ -63,16 +63,12 @@ init();
 
 // Fx to view department(s)
 function viewDepartments() {
-    // db.view_departments()
-    // .then(([rows]) => {
-    //     console.table(rows)
-    // })
-   // ****** figure SELECT statements
-    console.log('Now viewing all departments:');
-    Connection.query('SELECT * FROM department;', function (err, data) {
-      console.table(data);
-    });
-    Connection.end();
+    db.view_departments()
+    .then(([rows]) => {
+        console.log('Now viewing all departments:');
+        console.log(conTable.getTable(rows));
+        init()
+    })
   };
 
 // Fx to view role(s)
