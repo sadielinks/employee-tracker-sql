@@ -69,7 +69,7 @@ function viewDepartments() {
     // })
    // ****** figure SELECT statements
     console.log('Now viewing all departments:');
-    Connection.query('SELECT ;', function (err, data) {
+    Connection.query('SELECT * FROM department;', function (err, data) {
       console.table(data);
     });
     Connection.end();
