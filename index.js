@@ -54,7 +54,7 @@ function init() {
 
             default:
                 console.log('Now exiting, goodbye!')
-                process.exit ();
+                db.exit ();
         }
     })
 };
@@ -62,12 +62,16 @@ init();
 
 // Fx to view department(s)
 function viewDepartments() {
-    db.promise().query("SELECT * FROM departments")
-        .then( ([rows]) => {
-            console.log(cTable.getTable(rows));
-            init()
-        });
-    };
+    console.log('Now viewing all roles:');
+    db.query('SELECT * FROM department', (err, rows) => {
+        if (err) {
+            console.log('')
+            console.log(err)
+        }
+        console.table(rows);
+        Menu(action);
+    });
+};
 
 // Fx to view role(s)
 function viewRoles() {
