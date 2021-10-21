@@ -52,9 +52,9 @@ function init() {
                 editEmployees ();
                 break;
 
-            case 'Exit':
+            default:
+                console.log('Now exiting, goodbye!')
                 exit ();
-                break;
         }
     })
 };
