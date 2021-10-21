@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 
 // moved connection to root index.js for my own clarity and sanity 
 // Connect to database (used to be inside db folder)
-var connection = mysql.createConnection({
+const db = mysql.createConnection({
     host: "localhost",
     // MySQL username
     user: "root",
@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
     database: "employee_db",
   });
   
-  connection.connect(function (err) {
+  db.connect(function (err) {
     if (err) throw err;
     init();
   });
@@ -21,11 +21,10 @@ var connection = mysql.createConnection({
 // inquirer Q's
 function init() {
     inquirer
-    .prompt([
-    {
+    .prompt({
         type: 'list',
         name: 'main_menu',
-        message: 'What would you like to do?',
+        message: '~Welcome! What would you like to do?~',
         choices: [
                 'View all departments',
                 'View all roles',
@@ -36,9 +35,8 @@ function init() {
                 'Edit an employee',
                 'Exit',
         ]
-    }
     // switch case to call the corresponding fx per the user's selection
-    ]) .then(res => {
+    }).then(res => {
         switch (res.choice){
             case 'View all departments':
                 viewDepartments ();
@@ -68,13 +66,13 @@ function init() {
                 editEmployees ();
                 break;
 
-            // default:
-            //     console.log('~Now exiting, goodbye!~')
-            //     db.end ();
+            default:
+                console.log('~Now exiting, goodbye!~')
+                db.end ();
         }
     })
 };
-init();
+// init();
 
 // Fx to view department(s)
 function viewDepartments() {
