@@ -4,17 +4,19 @@ const mysql = require('mysql2');
 
 // moved connection to root index.js for my own clarity and sanity 
 // Connect to database (used to be inside db folder)
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // MySQL username,
-      user: 'root',
-      // MySQL password here
-      password: 'xkcd$$00',
-      database: 'employee_db'
-    },
-    console.log('Welcome. You are connected to the company database.')
-  );
+var connection = mysql.createConnection({
+    host: "localhost",
+    // MySQL username
+    user: "root",
+    // MySQL password
+    password: 'xkcd$$00',
+    database: "employee_db",
+  });
+  
+  connection.connect(function (err) {
+    if (err) throw err;
+    init();
+  });
 
 // inquirer Q's
 function init() {
