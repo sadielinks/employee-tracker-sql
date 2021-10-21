@@ -2,6 +2,20 @@ const inquirer = require('inquirer');
 const db = require('./db');
 const conTable = require('console.table');
 
+// moved connection to root index.js for my own clarity and sanity 
+// Connect to database (used to be inside db folder)
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      // MySQL username,
+      user: 'root',
+      // MySQL password here
+      password: 'xkcd$$00',
+      database: 'employee_db'
+    },
+    console.log('Welcome. You are connected to the company database.')
+  );
+
 // inquirer Q's
 function init() {
     inquirer
