@@ -1,6 +1,6 @@
 // Import and require mysql2
 const mysql = require('mysql2');
-// const Connection = require('mysql2/typings/mysql/lib/Connection');
+const util = require('util');
 
 // Connect to database
 const db = mysql.createConnection(

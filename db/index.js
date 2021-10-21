@@ -1,6 +1,7 @@
 // this will direct traffic
-const { connect } = require("./connection");
-const connection = require("./connection");
+const db = require("./connection");
+
+
 
 // queries - dept, salaries, each data search
 class DB {

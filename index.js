@@ -54,7 +54,7 @@ function init() {
 
             default:
                 console.log('Now exiting, goodbye!')
-                exit ();
+                process.exit ();
         }
     })
 };
@@ -226,6 +226,5 @@ function editEmployees() {
 
 // Fx to exit
 function exit() {
-    console.log('Now exiting, goodbye!');
-    Connection.end();
+    db.end()
   };
