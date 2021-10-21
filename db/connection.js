@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 // const Connection = require('mysql2/typings/mysql/lib/Connection');
 
 // Connect to database
-const Connection = mysql.createConnection(
+const db = mysql.createConnection(
   {
     host: 'localhost',
     // MySQL username,
@@ -15,8 +15,8 @@ const Connection = mysql.createConnection(
   console.log('Connected to the company database.')
 );
 
-Connection.connect(function (err){
+db.connect(function (err){
   if (err) throw(err);
 })
 
-module.exports = Connection;
+module.exports = db;

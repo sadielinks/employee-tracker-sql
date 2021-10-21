@@ -58,18 +58,16 @@ function init() {
         }
     })
 };
-
 init();
 
 // Fx to view department(s)
 function viewDepartments() {
-    db.view_departments()
-    .then(([rows]) => {
-        console.log('Now viewing all departments:');
-        console.log(conTable.getTable(rows));
-        init()
-    })
-  };
+    db.promise().query("SELECT * FROM departments")
+        .then( ([rows]) => {
+            console.log(cTable.getTable(rows));
+            init()
+        });
+    };
 
 // Fx to view role(s)
 function viewRoles() {
