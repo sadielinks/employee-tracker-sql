@@ -122,25 +122,39 @@ function viewEmployees() {
 
 // Fx to add department(s)
 function addDepartments() {
+    console.log('|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|');
     inquirer
-    .prompt ([
-        {
-            type: 'input',
-            name: 'role_dept',
-            message: 'Which department you want to add to?',
-            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration'],
-        },
-        {
-            type: 'input',
-            name: 'role_name',
-            message: 'What is the name of the new role?',
-        },
-        {
-            type: 'input',
-            name: 'role_salary',
-            message: 'What is the salary for this role?',
-        },
-    ])
+    .prompt({
+        type: 'input',
+        name: 'add_departments',
+        message: 'Please name the new department:'
+    }).then(function (answer) {
+        var query = "INSERT INTO department (department_name) VALUES (?)";
+        db.query('INSERT INTO department (department_name) VALUES (?)', [answer.add_departments], function (err, res) {
+            console.log('|~-~-~- NEW DEPARTMENT ADDED!-~-~-~|');
+            init();
+        });
+    });
+};
+
+
+//     inquirer
+//       .prompt({
+//         type: 'input',
+//         name: 'addDepartments',
+//         message: 'Please provide the new department name:',
+//       })
+//       .then(function (answer) {
+//         connection.query(
+//           'INSERT INTO department (name) VALUES ("${answer.newDepartment}");',
+//           function (err, res) {
+ 
+            // console.log('|~-~-~- NEW DEPARTMENT ADDED-~-~-~|');
+//           }
+//         );
+//         connection.end();
+//       });
+//   }
 
 // // Fx to add role(s)
 // function addRoles() {
