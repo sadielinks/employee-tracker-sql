@@ -244,7 +244,7 @@ function editEmpRoles() {
             name: "managerNameUpdate",
             type: "list",
             message: "What is the name of the employee's manager?",
-            choices: [...managerName, "This is the manager"]
+            choices: [...managerName, 'is the manager']
         }
     ]).then(function (answer) {
         // making variables for each loop component
@@ -280,24 +280,25 @@ function editEmpRoles() {
         for (var i = 0; i < managerInfo.length; i++) {
             if (answer.managerNameUpdate === managerInfo[i].first_name + " " + managerInfo[i].last_name) {
                 managerID = managerInfo[i].id;
-            } else if (answer.managerNameUpdate === "This is the manager") {
+            } else if (answer.managerNameUpdate === 'is the manager') {
                 managerID = null;
             }
         };
 
         if (indexFirst != indexLast) {
-            console.log("Error! Make sure you got the right name! Please try again! \n");
+            console.log('The name you entered does not match database records. Please try again.');
             updateRole();
         } else if (answer.managerNameUpdate === answer.firstName + " " + answer.lastName) {
-            console.log("You've selected the employee as their own manager themselves. Please try again! \n");
+            console.log('Employees are not permitted to be their own managers. Please try again.');
             updateRole();
         };
 
-        var query = "UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?";
-        connection.query(query, [roleID, managerID, answer.firstName], function (err, res) {
+        // var query = "UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?";
+        connection.query(`UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?`, [roleID, managerID, answer.firstName], function (err, res) {
             if (err) throw err;
-            console.log("Employee Updated! \n");
-            init.init();
+            console.log('|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|');
+            console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+        init();
         }
         );
     })
