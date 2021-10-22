@@ -284,15 +284,15 @@ function editEmpRoles() {
               .prompt([
                 // displays selections:
                 {
-                  type: "list",
-                  name: "newroll",
-                  message: "Pick new role:",
+                  type: 'list',
+                  name: 'edit_emp_role',
+                  message: 'Please select the new role',
                   choices: curRolesNames,
                 },
               ])
               .then(function (answer) {
                 // since every employee has an id...
-                const chosenRole = answer.newroll;
+                const chosenRole = answer.edit_emp_role;
                 let chosenRoleId;
                 for (let i = 0; i < curRoles.length; i++) {
                   if (curRoles[i].title === chosenRole) {
