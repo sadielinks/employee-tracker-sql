@@ -14,7 +14,7 @@ const db = mysql.createConnection(
     database: "employee_db",
   },
   console.log(
-    "|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|"
+    '|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|'
   )
 );
 
@@ -73,7 +73,9 @@ function init() {
           break;
 
         default:
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-Now exiting, goodbye!-~-~-~|");
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           db.end();
       }
     });
@@ -81,7 +83,9 @@ function init() {
 
 // Fx to view department(s)
 function viewDepartments() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM department", function (err, res) {
     if (err) {
       console.log(err);
@@ -107,7 +111,9 @@ function viewRoles() {
 
 // Fx to view employee(s)
 function viewEmployees() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM employee", function (err, res) {
     if (err) {
       console.log(err);
@@ -120,7 +126,9 @@ function viewEmployees() {
 
 // Fx to add department(s)
 function addDepartments() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     .prompt({
       type: "input",
@@ -132,6 +140,7 @@ function addDepartments() {
         "INSERT INTO department (department_name) VALUES (?)",
         [answer.add_departments],
         function (err, res) {
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
           console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           init();
@@ -142,7 +151,9 @@ function addDepartments() {
 
 // Fx to add role(s)
 function addRoles() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A ROLE-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     .prompt([
       {
@@ -169,6 +180,7 @@ function addRoles() {
         `INSERT INTO role role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
         function (err, res) {
           console.table(res);
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
           console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           init();
@@ -177,54 +189,59 @@ function addRoles() {
     });
 }
 
-// // Fx to add employee(s)
-//   function addEmployees() {
-//     inquirer
-//     .prompt ([
-//         {
-//             type: 'input',
-//             name: 'employee_dept',
-//             message: 'Which department will this employee be in?',
-//             choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
-//         },
-//         {
-//             type: 'input',
-//             name: 'employee_id',
-//             message: 'What will be their ID?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'employee_first_name',
-//             message: 'What is their first name?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'employee_last_name',
-//             message: 'What is their last name?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'employee_salary',
-//             message: 'What will be their salary?',
-//         },
-//         {
-//             // ****** figure out how to build choices of current managers...?
-//             type: 'input',
-//             name: 'employee_manager',
-//             message: 'Who will be their manager?',
-//         },
-//     ])
+// Fx to add employee(s)
+  function addEmployees() {
+    console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+    console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    inquirer
+    .prompt ([
+        {
+            type: 'input',
+            name: 'employee_dept',
+            message: 'Which department will this employee be in?',
+            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
+        },
+        {
+            type: 'input',
+            name: 'employee_id',
+            message: 'What will be their ID?',
+        },
+        {
+            type: 'input',
+            name: 'employee_first_name',
+            message: 'What is their first name?',
+        },
+        {
+            type: 'input',
+            name: 'employee_last_name',
+            message: 'What is their last name?',
+        },
+        {
+            type: 'input',
+            name: 'employee_salary',
+            message: 'What will be their salary?',
+        },
+        {
+            // ****** figure out how to build choices of current managers...?
+            type: 'input',
+            name: 'employee_manager',
+            message: 'Who will be their manager?',
+        },
+    ])
 
-//     .then(function (answer) {
-//     db.query (
-//         'INSERT INTO employee ',
-//         function (err, res) {
-//             console.table(res);
-//             console.log('Added new employee!');
-//         }
-//     );
-//     db.end();
-//     });}
+    .then(function (answer) {
+    db.query (
+        'INSERT INTO employee ',
+        function (err, res) {
+            console.table(res);
+            console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+            console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
+            console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          }
+    );
+    db.end();
+    });}
 
 // Fx to edit employee role(s)
 function editEmpRoles() {
