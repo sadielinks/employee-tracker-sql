@@ -11,88 +11,83 @@ const db = mysql.createConnection({
     // MySQL password
     password: 'xkcd$$00',
     database: "employee_db",
-  },
+},
     console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|')
-  );
-  
-  db.connect(function (err) {
+);
+
+db.connect(function (err) {
     if (err) throw err;
     init();
-  });
+});
 
 // inquirer Q's
 function init() {
     inquirer
-    .prompt({
-        type: 'list',
-        name: 'main_menu',
-        message: 'What would you like to do?',
-        choices: [
+        .prompt({
+            type: 'list',
+            name: 'main_menu',
+            message: 'What would you like to do?',
+            choices: [
                 'View all departments',
                 'View all roles',
                 'View all employees',
                 'Add a department',
                 'Add a role',
                 'Add an employee',
-                'Edit a role',
-                'Edit an employee',
+                'Edit an employee role',
                 'Exit',
-        ]
-    // switch case to call the corresponding fx per the user's selection
-    }).then((answer) => {
-        switch (answer.main_menu){
-            case 'View all departments':
-                viewDepartments ();
-                break;
+            ]
+            // switch case to call the corresponding fx per the user's selection
+        }).then((answer) => {
+            switch (answer.main_menu) {
+                case 'View all departments':
+                    viewDepartments();
+                    break;
 
-            case 'View all roles':
-                viewRoles ();
-                break;
+                case 'View all roles':
+                    viewRoles();
+                    break;
 
-            case 'View all employees':
-                viewEmployees ();
-                break;
+                case 'View all employees':
+                    viewEmployees();
+                    break;
 
-            case 'Add a department':
-                addDepartments ();
-                break;
+                case 'Add a department':
+                    addDepartments();
+                    break;
 
-            case 'Add a role':
-                addRoles ();
-                break;
+                case 'Add a role':
+                    addRoles();
+                    break;
 
-            case 'Add an employee':
-                addEmployees ();
-                break;
-            
-            case 'Edit a role':
-                editRoles ();
-                break;
+                case 'Add an employee':
+                    addEmployees();
+                    break;
 
-            case 'Edit an employee':
-                editEmployees ();
-                break;
+                case 'Edit an employee role':
+                    editEmpRoles();
+                    break;
 
-            default:
-                console.log('|~-~-~-Now exiting, goodbye!-~-~-~|')
-                db.end ();
-        }
-    })
+                default:
+                    console.log('|~-~-~-Now exiting, goodbye!-~-~-~|')
+                    db.end();
+            }
+        })
 };
 
 
 // Fx to view department(s)
-function viewDepartments () {
+function viewDepartments() {
     console.log('|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|');
     db.query('SELECT * FROM department', function (err, res) {
-      if (err) {
-          console.log(err);
-      }
-      console.table(res);
-      // brings up main_menu again
-      init();
+        if (err) {
+            console.log(err);
+        }
+        console.table(res);
+        // brings up main_menu again
+        init();
     });
-  };
+};
 
 // Fx to view role(s)
 function viewRoles() {
@@ -104,8 +99,8 @@ function viewRoles() {
         console.table(res);
         // brings up main_menu again
         init();
-      });
-    };
+    });
+};
 
 // Fx to view employee(s)
 function viewEmployees() {
@@ -117,77 +112,61 @@ function viewEmployees() {
         console.table(res);
         // brings up main_menu again
         init();
-      });
-    };
+    });
+};
 
 // Fx to add department(s)
 function addDepartments() {
     console.log('|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|');
     inquirer
-    .prompt({
-        type: 'input',
-        name: 'add_departments',
-        message: 'Please name the new department:'
-    }).then(function (answer) {
-        var query = "INSERT INTO department (department_name) VALUES (?)";
-        db.query('INSERT INTO department (department_name) VALUES (?)', [answer.add_departments], function (err, res) {
-            console.log('|~-~-~- NEW DEPARTMENT ADDED!-~-~-~|');
-            init();
+        .prompt({
+            type: 'input',
+            name: 'add_departments',
+            message: 'Please name the new department:'
+        }).then(function (answer) {
+            db.query('INSERT INTO department (department_name) VALUES (?)', [answer.add_departments], function (err, res) {
+                console.log('|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|');
+                console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+                init();
+            });
         });
-    });
 };
 
-
-//     inquirer
-//       .prompt({
-//         type: 'input',
-//         name: 'addDepartments',
-//         message: 'Please provide the new department name:',
-//       })
-//       .then(function (answer) {
-//         connection.query(
-//           'INSERT INTO department (name) VALUES ("${answer.newDepartment}");',
-//           function (err, res) {
- 
-            // console.log('|~-~-~- NEW DEPARTMENT ADDED-~-~-~|');
-//           }
-//         );
-//         connection.end();
-//       });
-//   }
-
-// // Fx to add role(s)
-// function addRoles() {
-//     inquirer
-//     .prompt ([
-//         {
-//             type: 'input',
-//             name: 'role_dept',
-//             message: 'Which department you want to add to?',
-//             choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration'],
-//         },
-//         {
-//             type: 'input',
-//             name: 'role_name',
-//             message: 'What is the name of the new role?',
-//         },
-//         {
-//             type: 'input',
-//             name: 'role_salary',
-//             message: 'What is the salary for this role?',
-//         },
-//     ])
-
-//     .then(function (answer) {
-//     db.query (
-//         'INSERT INTO role ',
-//         function (err, res) {
-//             console.table(res);
-//             console.log('Added new role!');
-//         }
-//     );
-//     db.end();
-//     });}
+// Fx to add role(s)
+function addRoles() {
+    console.log('|~-~-~-NOW ADDING A ROLE-~-~-~|');
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'addrole_name',
+                message: 'What is the name of the new role?',
+            },
+            {
+                type: 'input',
+                name: 'addrole_salary',
+                message: 'What is the salary for this role?',
+            },
+            {
+                type: 'input',
+                name: 'addrole_dept',
+                message: 'Which department you want to add to?',
+                // need to figure out how to add new depts to choices -_-
+                choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration'],
+            },
+        ]).then(function (answer) {
+            db.query(
+                // use backticks to insert SQL language!
+                `INSERT INTO role role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
+                function (err, res) {
+                    console.table(res);
+                    console.log('|~-~-~- YES, NEW ROLE ADDED!-~-~-~|');
+                    console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+                    init();
+                }
+            );
+        });
+};
 
 // // Fx to add employee(s)
 //   function addEmployees() {
@@ -238,55 +217,29 @@ function addDepartments() {
 //     db.end();
 //     });}
 
-// // Fx to edit role(s)
-// function editRoles() {
-//     inquirer
-//     .prompt ([
-//     {
-//         type: 'input',
-//         name: 'edit_roles',
-//         message: '',
-//     },
-//     {
+// Fx to edit employee role(s)
+function editEmpRoles() {
+    inquirer
+    .prompt ([
+    {
+        type: 'input',
+        name: 'editemp_roles',
+        message: '',
+    },
+    {
 
-//     },
-//     {
+    },
+    {
 
-//     },
-//     {
+    },
+    {
 
-//     },
-//     ])
+    },
+    ])
 
-//     db.query('SELECT ;', function (err, res) {
-//       console.table(res);
-//       console.log('Edited employee role!');
-//     });
-//     db.end();
-//   };
-
-// // Fx to edit employee(s)
-// function editEmployees() {
-//     inquirer
-//     .prompt ([
-//     {
-//         type: 'input',
-//         name: '',
-//     },
-//     {
-
-//     },
-//     {
-
-//     },
-//     {
-
-//     },
-//     ])
-
-//     db.query('SELECT ;', function (err, res) {
-//       console.table(res);
-//       console.log('Edited employee info!');
-//     });
-//     db.end();
-//   };
+    db.query('SELECT ;', function (err, res) {
+      console.table(res);
+      console.log('Edited employee role!');
+    });
+    db.end();
+  };
