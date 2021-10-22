@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
-// const conTable = require('console.table');
+const consoleTable = require('console.table');
 
-// moved connection to root index.js for my own clarity and sanity 
+// moved db to root index.js for my own clarity and sanity 
 // Connect to database (used to be inside db folder)
 const db = mysql.createConnection({
     host: "localhost",
@@ -11,7 +11,9 @@ const db = mysql.createConnection({
     // MySQL password
     password: 'xkcd$$00',
     database: "employee_db",
-  });
+  },
+    console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|')
+  );
   
   db.connect(function (err) {
     if (err) throw err;
@@ -24,7 +26,7 @@ function init() {
     .prompt({
         type: 'list',
         name: 'main_menu',
-        message: '~Welcome! What would you like to do?~',
+        message: 'What would you like to do?',
         choices: [
                 'View all departments',
                 'View all roles',
@@ -66,45 +68,44 @@ function init() {
                 editEmployees ();
                 break;
 
-            default:
-                console.log('~Now exiting, goodbye!~')
-                db.end ();
+            // default:
+            //     console.log('|~-~-~-Now exiting, goodbye!-~-~-~|')
+            //     db.end ();
         }
     })
 };
-// init();
-
-// Fx to view department(s)
-function viewDepartments() {
-    console.log('Now viewing all departments:');
-    connection.query(`SELECT * FROM department`, function (err, data) {
-      console.table(data);
-    });
-    connection.end();
-  }
 
 
-
-
+// // Fx to view department(s)
+// function viewDepartments () {
+//     console.log('Now viewing all departments:');
+//     db.query('SELECT * FROM department', function (err, res) {
+//       if (err) {
+//           console.log(err);
+//       }
+//       console.table(res);
+//       init();
+//     });
+//   };
 
 // // Fx to view role(s)
 // function viewRoles() {
 //     console.log('Now viewing all roles:');
 //     // ****** figure SELECT statements
-//     Connection.query('SELECT ;', function (err, data) {
-//       console.table(data);
+//     db.query('SELECT ;', function (err, res) {
+//       console.table(res);
 //     });
-//     Connection.end();
+//     db.end();
 //   };
 
 // // Fx to view employee(s)
 // function viewEmployees() {
 //     console.log('Now viewing all employees:');
 //     // ****** figure SELECT statements
-//     Connection.query('SELECT ;', function (err, data) {
-//       console.table(data);
+//     db.query('SELECT ;', function (err, res) {
+//       console.table(res);
 //     });
-//     Connection.end();
+//     db.end();
 //   };
 
 // // Fx to add role(s)
@@ -130,14 +131,14 @@ function viewDepartments() {
 //     ])
 
 //     .then(function (answer) {
-//     Connection.query (
+//     db.query (
 //         'INSERT INTO role ',
-//         function (err, data) {
-//             console.table(data);
+//         function (err, res) {
+//             console.table(res);
 //             console.log('Added new role!');
 //         }
 //     );
-//     Connection.end();
+//     db.end();
 //     });}
 
 // // Fx to add employee(s)
@@ -179,14 +180,14 @@ function viewDepartments() {
 //     ])
 
 //     .then(function (answer) {
-//     Connection.query (
+//     db.query (
 //         'INSERT INTO employee ',
-//         function (err, data) {
-//             console.table(data);
+//         function (err, res) {
+//             console.table(res);
 //             console.log('Added new employee!');        
 //         }
 //     );
-//     Connection.end();
+//     db.end();
 //     });}
 
 // // Fx to edit role(s)
@@ -209,11 +210,11 @@ function viewDepartments() {
 //     },
 //     ])
 
-//     Connection.query('SELECT ;', function (err, data) {
-//       console.table(data);
+//     db.query('SELECT ;', function (err, res) {
+//       console.table(res);
 //       console.log('Edited employee role!');
 //     });
-//     Connection.end();
+//     db.end();
 //   };
 
 // // Fx to edit employee(s)
@@ -235,9 +236,9 @@ function viewDepartments() {
 //     },
 //     ])
 
-//     Connection.query('SELECT ;', function (err, data) {
-//       console.table(data);
+//     db.query('SELECT ;', function (err, res) {
+//       console.table(res);
 //       console.log('Edited employee info!');
 //     });
-//     Connection.end();
+//     db.end();
 //   };
