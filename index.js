@@ -27,18 +27,18 @@ db.connect(function (err) {
 function init() {
   inquirer
     .prompt({
-      type: "list",
-      name: "main_menu",
+      type: 'list',
+      name: 'main_menu',
       message: "What would you like to do?",
       choices: [
-        "View all departments",
-        "View all roles",
-        "View all employees",
-        "Add a department",
-        "Add a role",
-        "Add an employee",
-        "Edit an employee role",
-        "Exit",
+        'View all departments',
+        'View all roles',
+        'View all employees',
+        'Add a department',
+        'Add a role',
+        'Add an employee',
+        'Edit an employee role',
+        'Exit',
       ],
       // switch case to call the corresponding fx per the user's selection
     })
@@ -73,9 +73,9 @@ function init() {
           break;
 
         default:
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-Now exiting, goodbye!-~-~-~|");
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           db.end();
       }
     });
@@ -83,9 +83,9 @@ function init() {
 
 // Fx to view department(s)
 function viewDepartments() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|");
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM department", function (err, res) {
     if (err) {
       console.log(err);
@@ -111,9 +111,9 @@ function viewRoles() {
 
 // Fx to view employee(s)
 function viewEmployees() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM employee", function (err, res) {
     if (err) {
       console.log(err);
@@ -126,9 +126,9 @@ function viewEmployees() {
 
 // Fx to add department(s)
 function addDepartments() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     .prompt({
       type: "input",
@@ -140,9 +140,9 @@ function addDepartments() {
         "INSERT INTO department (department_name) VALUES (?)",
         [answer.add_departments],
         function (err, res) {
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           init();
         }
       );
@@ -151,9 +151,9 @@ function addDepartments() {
 
 // Fx to add role(s)
 function addRoles() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A ROLE-~-~-~|");
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     .prompt([
       {
@@ -180,9 +180,9 @@ function addRoles() {
         `INSERT INTO role role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
         function (err, res) {
           console.table(res);
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
-          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           init();
         }
       );
@@ -191,9 +191,9 @@ function addRoles() {
 
 // Fx to add employee(s)
   function addEmployees() {
-    console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
     console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
-    console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
     inquirer
     .prompt ([
         {
@@ -235,9 +235,9 @@ function addRoles() {
         'INSERT INTO employee ',
         function (err, res) {
             console.table(res);
-            console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+            // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
             console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
-            console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+            // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           }
     );
     db.end();
