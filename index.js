@@ -220,26 +220,89 @@ function addRoles() {
 // Fx to edit employee role(s)
 function editEmpRoles() {
     inquirer
-    .prompt ([
-    {
-        type: 'input',
-        name: 'editemp_roles',
-        message: '',
-    },
-    {
+    .prompt([
+        {
+            type: 'list',
+            name: '',
+            message: "What is the employee's first name?",
+            // will build loops to check
+            choices: employeeFirstName
+        },
+        {
+            name: "lastName",
+            type: "list",
+            message: "What is the employee's last name?",
+            choices: employeeLastName
+        },
+        {
+            name: "roleUpdate",
+            type: "list",
+            message: "What is the employee's updated role?",
+            choices: roleName
+        },
+        {
+            name: "managerNameUpdate",
+            type: "list",
+            message: "What is the name of the employee's manager?",
+            choices: [...managerName, "This is the manager"]
+        }
+    ]).then(function (answer) {
+        // making variables for each loop component
+        var selectedFirstName;
+        var selectedLastName;
+        var indexFirst;
+        var indexLast;
 
-    },
-    {
+        // checks frist_name
+        for (var i = 0; i < employeeInfo.length; i++) {
+            if (answer.firstName === employeeFirstName[i]) {
+                selectedFirstName = employeeFirstName[i];
+                indexFirst = i;
+            }
+        };
 
-    },
-    {
+        // checks last_name
+        for (var i = 0; i < employeeInfo.length; i++) {
+            if (answer.lastName === employeeLastName[i]) {
+                selectedLastName = employeeLastName[i];
+                indexLast = i;
+            }
+        };
 
-    },
-    ])
+        // checks role_id
+        for (var i = 0; i < roleInfo.length; i++) {
+            if (answer.roleUpdate === roleInfo[i].title) {
+                roleID = roleInfo[i].id;
+            }
+        };
 
-    db.query('SELECT ;', function (err, res) {
-      console.table(res);
-      console.log('Edited employee role!');
-    });
-    db.end();
-  };
+        // checks manager_id by using the previous loops of the first/last_name
+        for (var i = 0; i < managerInfo.length; i++) {
+            if (answer.managerNameUpdate === managerInfo[i].first_name + " " + managerInfo[i].last_name) {
+                managerID = managerInfo[i].id;
+            } else if (answer.managerNameUpdate === "This is the manager") {
+                managerID = null;
+            }
+        };
+
+        if (indexFirst != indexLast) {
+            console.log("Error! Make sure you got the right name! Please try again! \n");
+            updateRole();
+        } else if (answer.managerNameUpdate === answer.firstName + " " + answer.lastName) {
+            console.log("You've selected the employee as their own manager themselves. Please try again! \n");
+            updateRole();
+        };
+
+        var query = "UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?";
+        connection.query(query, [roleID, managerID, answer.firstName], function (err, res) {
+            if (err) throw err;
+            console.log("Employee Updated! \n");
+            init.init();
+        }
+        );
+    })
+};
+
+module.exports = {
+updateRole
+};
