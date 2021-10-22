@@ -31,6 +31,7 @@ function init() {
                 'View all departments',
                 'View all roles',
                 'View all employees',
+                'Add a department',
                 'Add a role',
                 'Add an employee',
                 'Edit a role',
@@ -50,6 +51,10 @@ function init() {
 
             case 'View all employees':
                 viewEmployees ();
+                break;
+
+            case 'Add a department':
+                addDepartments ();
                 break;
 
             case 'Add a role':
@@ -78,7 +83,7 @@ function init() {
 
 // Fx to view department(s)
 function viewDepartments () {
-    console.log('|~-~-~-Now viewing all departments-~-~-~|');
+    console.log('|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|');
     db.query('SELECT * FROM department', function (err, res) {
       if (err) {
           console.log(err);
@@ -89,25 +94,53 @@ function viewDepartments () {
     });
   };
 
-// // Fx to view role(s)
-// function viewRoles() {
-//     console.log('Now viewing all roles:');
-//     // ****** figure SELECT statements
-//     db.query('SELECT ;', function (err, res) {
-//       console.table(res);
-//     });
-//     db.end();
-//   };
+// Fx to view role(s)
+function viewRoles() {
+    console.log('|~-~-~-NOW VIEWING ALL ROLES-~-~-~|');
+    db.query('SELECT * FROM role', function (err, res) {
+        if (err) {
+            console.log(err);
+        }
+        console.table(res);
+        // brings up main_menu again
+        init();
+      });
+    };
 
-// // Fx to view employee(s)
-// function viewEmployees() {
-//     console.log('Now viewing all employees:');
-//     // ****** figure SELECT statements
-//     db.query('SELECT ;', function (err, res) {
-//       console.table(res);
-//     });
-//     db.end();
-//   };
+// Fx to view employee(s)
+function viewEmployees() {
+    console.log('|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|');
+    db.query('SELECT * FROM employee', function (err, res) {
+        if (err) {
+            console.log(err);
+        }
+        console.table(res);
+        // brings up main_menu again
+        init();
+      });
+    };
+
+// Fx to add department(s)
+function addDepartments() {
+    inquirer
+    .prompt ([
+        {
+            type: 'input',
+            name: 'role_dept',
+            message: 'Which department you want to add to?',
+            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration'],
+        },
+        {
+            type: 'input',
+            name: 'role_name',
+            message: 'What is the name of the new role?',
+        },
+        {
+            type: 'input',
+            name: 'role_salary',
+            message: 'What is the salary for this role?',
+        },
+    ])
 
 // // Fx to add role(s)
 // function addRoles() {

@@ -3,6 +3,7 @@ CREATE DATABASE employee_db;
 
 USE employee_db;
 
+/* created using assignment 12 README.md */
 CREATE TABLE department (
     id INT AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR(30) NOT NULL
