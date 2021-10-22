@@ -1,17 +1,17 @@
-const inquirer = require("inquirer");
-const mysql = require("mysql2");
-const consoleTable = require("console.table");
+const inquirer = require('inquirer');
+const mysql = require('mysql2');
+const consoleTable = require('console.table');
 
 // moved db to root index.js for my own clarity and sanity
 // Connect to database (used to be inside db folder)
 const db = mysql.createConnection(
   {
-    host: "localhost",
+    host: 'localhost',
     // MySQL username
-    user: "root",
+    user: 'root',
     // MySQL password
-    password: "xkcd$$00",
-    database: "employee_db",
+    password: 'xkcd$$00',
+    database: 'employee_db',
   },
   console.log(
     '|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|'
@@ -44,38 +44,38 @@ function init() {
     })
     .then((answer) => {
       switch (answer.main_menu) {
-        case "View all departments":
+        case 'View all departments':
           viewDepartments();
           break;
 
-        case "View all roles":
+        case 'View all roles':
           viewRoles();
           break;
 
-        case "View all employees":
+        case 'View all employees':
           viewEmployees();
           break;
 
-        case "Add a department":
+        case 'Add a department':
           addDepartments();
           break;
 
-        case "Add a role":
+        case 'Add a role':
           addRoles();
           break;
 
-        case "Add an employee":
+        case 'Add an employee':
           addEmployees();
           break;
 
-        case "Edit an employee role":
+        case 'Edit an employee role':
           editEmpRoles();
           break;
 
         default:
-          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          console.log("|~-~-~-Now exiting, goodbye!-~-~-~|");
-          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          // console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+          console.log('|~-~-~-Now exiting, goodbye!-~-~-~|');
+          // console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
           db.end();
       }
     });
@@ -177,7 +177,7 @@ function addRoles() {
     .then(function (answer) {
       db.query(
         // use backticks to insert SQL language!
-        `INSERT INTO role role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
+        `INSERT INTO role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
         function (err, res) {
           console.table(res);
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
@@ -229,7 +229,6 @@ function addRoles() {
             message: 'Who will be their manager?',
         },
     ])
-
     .then(function (answer) {
     db.query (
         'INSERT INTO employee ',
