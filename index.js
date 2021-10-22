@@ -231,7 +231,7 @@ function editEmpRoles() {
   // SQL to pick from db employees
   console.log("|~-~-~-NOW EDITING A CURRENT EMPLOYEE ROLE-~-~-~|");
   db.query(
-    `SELECT employee.id, employee.first_name, employee.last_name, role.id AS 'role' FROM employee, role, department WHERE department.id = role.department AND role.id = employee.role`,
+    `SELECT employee.id AS employeeId, concat(employee.first_name, " ", employee.last_name) AS employeeFullName FROM employee`,
     (err, res) => {
       if (err) throw err;
 
