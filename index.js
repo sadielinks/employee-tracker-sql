@@ -38,8 +38,8 @@ function init() {
                 'Exit',
         ]
     // switch case to call the corresponding fx per the user's selection
-    }).then(res => {
-        switch (res.choice){
+    }).then((answer) => {
+        switch (answer.main_menu){
             case 'View all departments':
                 viewDepartments ();
                 break;
@@ -68,25 +68,26 @@ function init() {
                 editEmployees ();
                 break;
 
-            // default:
-            //     console.log('|~-~-~-Now exiting, goodbye!-~-~-~|')
-            //     db.end ();
+            default:
+                console.log('|~-~-~-Now exiting, goodbye!-~-~-~|')
+                db.end ();
         }
     })
 };
 
 
-// // Fx to view department(s)
-// function viewDepartments () {
-//     console.log('Now viewing all departments:');
-//     db.query('SELECT * FROM department', function (err, res) {
-//       if (err) {
-//           console.log(err);
-//       }
-//       console.table(res);
-//       init();
-//     });
-//   };
+// Fx to view department(s)
+function viewDepartments () {
+    console.log('|~-~-~-Now viewing all departments-~-~-~|');
+    db.query('SELECT * FROM department', function (err, res) {
+      if (err) {
+          console.log(err);
+      }
+      console.table(res);
+      // brings up main_menu again
+      init();
+    });
+  };
 
 // // Fx to view role(s)
 // function viewRoles() {
