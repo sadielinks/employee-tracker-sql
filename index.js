@@ -79,7 +79,7 @@ function init() {
           db.end();
       }
     });
-}
+};
 
 // Fx to view department(s)
 function viewDepartments() {
@@ -94,7 +94,7 @@ function viewDepartments() {
     // brings up main_menu again
     init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
-}
+};
 
 // Fx to view role(s)
 function viewRoles() {
@@ -107,14 +107,14 @@ function viewRoles() {
     // brings up main_menu again
     init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
-}
+};
 
 // Fx to view employee(s)
 function viewEmployees() {
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query("SELECT employee.id, first_name, last_name, title, department_name, department_id, salary, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC", function (err, res) {
+  db.query("SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC", function (err, res) {
     if (err) {
       console.log(err);
     }
@@ -122,7 +122,7 @@ function viewEmployees() {
     // brings up main_menu again
     init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
-}
+};
 
 // Fx to add department(s)
 function addDepartments() {
@@ -130,15 +130,21 @@ function addDepartments() {
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
-    .prompt({
+    .prompt([{
       type: "input",
       name: "add_departments",
       message: "Please name the new department:",
-    })
+    },
+    {
+      type: "input",
+      name: "add_departments_id",
+      message: "Please provide the ID for the new department:",
+    }
+    ])
     .then(function (answer) {
       db.query(
-        "INSERT INTO department (department_name) VALUES (?)",
-        [answer.add_departments],
+        `INSERT INTO department (id, department_name) VALUES (?, ?), department_id, department_name`,
+        [answer.add_departments.add_departments_id],
         function (err, res) {
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
@@ -147,7 +153,7 @@ function addDepartments() {
         }
       );
     });
-}
+};
 
 // Fx to add role(s)
 function addRoles() {
@@ -187,10 +193,10 @@ function addRoles() {
         }
       );
     });
-}
+};
 
 // Fx to add employee(s)
-  function addEmployees() {
+function addEmployees() {
     // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
     console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
     // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
@@ -240,7 +246,8 @@ function addRoles() {
           }
     );
     init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
-    });}
+    });
+};
 
 // Fx to edit employee role(s)
 function editEmpRoles() {
@@ -341,99 +348,4 @@ function editEmpRoles() {
         });
     }
   );
-}
-
-
-
-
-
-
-
-//     inquirer
-//     .prompt([
-//         {
-//             type: 'list',
-//             name: 'edit_first_name',
-//             message: "What is the employee's first name?",
-//             // will build loops to check
-//             choices: employeeFirstName
-//         },
-//         {
-//             type: 'list',
-//             name: 'edit_last_name',
-//             message: "What is the employee's last name?",
-//             choices: employeeLastName
-//         },
-//         {
-//             type: 'list',
-//             name: 'edit_role',
-//             message: "What is the employee's updated role?",
-//             choices: roleName
-//         },
-//         {
-//             type: 'list',
-//             name: 'edit_manager_name',
-//             message: "What is the name of the employee's manager?",
-//             choices: [...managerName, 'is the manager']
-//         }
-//     ]).then(function (answer) {
-//         // making variables for each loop component
-//         var selectedFirstName;
-//         var selectedLastName;
-//         var indexFirst;
-//         var indexLast;
-
-//         // checks frist_name
-//         for (var i = 0; i < employeeInfo.length; i++) {
-//             if (answer.firstName === employeeFirstName[i]) {
-//                 selectedFirstName = employeeFirstName[i];
-//                 indexFirst = i;
-//             }
-//         };
-
-//         // checks last_name
-//         for (var i = 0; i < employeeInfo.length; i++) {
-//             if (answer.lastName === employeeLastName[i]) {
-//                 selectedLastName = employeeLastName[i];
-//                 indexLast = i;
-//             }
-//         };
-
-//         // checks role_id
-//         for (var i = 0; i < roleInfo.length; i++) {
-//             if (answer.roleUpdate === roleInfo[i].title) {
-//                 roleID = roleInfo[i].id;
-//             }
-//         };
-
-//         // checks manager_id by using the previous loops of the first/last_name
-//         for (var i = 0; i < managerInfo.length; i++) {
-//             if (answer.managerNameUpdate === managerInfo[i].first_name + " " + managerInfo[i].last_name) {
-//                 managerID = managerInfo[i].id;
-//             } else if (answer.managerNameUpdate === 'is the manager') {
-//                 managerID = null;
-//             }
-//         };
-
-//         if (indexFirst != indexLast) {
-//             console.log('The name you entered does not match database records. Please try again.');
-//             updateRole();
-//         } else if (answer.managerNameUpdate === answer.firstName + " " + answer.lastName) {
-//             console.log('Employees are not permitted to be their own managers. Please try again.');
-//             updateRole();
-//         };
-
-//         // var query = "UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?";
-//         connection.query(`UPDATE employee SET role_id = ?, manager_id = ? WHERE first_name = ?`, [roleID, managerID, answer.firstName], function (err, res) {
-//             if (err) throw err;
-// console.log('|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|');
-// console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
-//         init();
-//         }
-//         );
-//     })
-// };
-
-// module.exports = {
-// updateRole
-// };
+};
