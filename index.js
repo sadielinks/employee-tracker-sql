@@ -92,7 +92,7 @@ function viewDepartments() {
     }
     console.table(rows);
     // brings up main_menu again
-    init();
+    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
 }
 
@@ -105,7 +105,7 @@ function viewRoles() {
     }
     console.table(res);
     // brings up main_menu again
-    init();
+    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
 }
 
@@ -120,7 +120,7 @@ function viewEmployees() {
     }
     console.table(res);
     // brings up main_menu again
-    init();
+    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
   });
 }
 
@@ -143,7 +143,7 @@ function addDepartments() {
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          init();
+          init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
         }
       );
     });
@@ -183,7 +183,7 @@ function addRoles() {
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          init();
+          init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
         }
       );
     });
@@ -239,7 +239,7 @@ function addRoles() {
             // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           }
     );
-    init();
+    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
     });}
 
 // Fx to edit employee role(s)
@@ -332,7 +332,7 @@ function editEmpRoles() {
                     } else {
                       console.log("|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|");
                       console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-                      init();
+                      init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
                     }
                   }
                 );
@@ -342,6 +342,12 @@ function editEmpRoles() {
     }
   );
 }
+
+
+
+
+
+
 
 //     inquirer
 //     .prompt([
