@@ -1,21 +1,27 @@
-const inquirer = require('inquirer');
-const mysql = require('mysql2');
-const consoleTable = require('console.table');
+const inquirer = require("inquirer");
+const mysql = require("mysql2");
+const consoleTable = require("console.table");
 
 // moved db to root index.js for my own clarity and sanity
 // Connect to database (used to be inside db folder)
 const db = mysql.createConnection(
   {
-    host: 'localhost',
+    host: "localhost",
     // MySQL username
-    user: 'root',
+    user: "root",
     // MySQL password
-    password: 'xkcd$$00',
-    database: 'employee_db',
+    password: "xkcd$$00",
+    database: "employee_db",
   },
-  console.log('|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|'),
-  console.log('|~-~-~-~-~-~-~-~-~-~-| * WELCOME TO THE COMPANY DATABASE * |~-~-~-~-~-~-~-~--~-~|'),
-  console.log('|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|')
+  console.log(
+    "|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|"
+  ),
+  console.log(
+    "|~-~-~-~-~-~-~-~-~-~-| * WELCOME TO THE COMPANY DATABASE * |~-~-~-~-~-~-~-~--~-~|"
+  ),
+  console.log(
+    "|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|"
+  )
 );
 
 db.connect(function (err) {
@@ -27,59 +33,59 @@ db.connect(function (err) {
 function init() {
   inquirer
     .prompt({
-      type: 'list',
-      name: 'main_menu',
+      type: "list",
+      name: "main_menu",
       message: "What would you like to do?",
       choices: [
-        'View all departments',
-        'View all roles',
-        'View all employees',
-        'Add a department',
-        'Add a role',
-        'Add an employee',
-        'Edit an employee role',
-        'Exit',
+        "View all departments",
+        "View all roles",
+        "View all employees",
+        "Add a department",
+        "Add a role",
+        "Add an employee",
+        "Edit an employee role",
+        "Exit",
       ],
       // switch case to call the corresponding fx per the user's selection
     })
     .then((answer) => {
       switch (answer.main_menu) {
-        case 'View all departments':
+        case "View all departments":
           viewDepartments();
           break;
 
-        case 'View all roles':
+        case "View all roles":
           viewRoles();
           break;
 
-        case 'View all employees':
+        case "View all employees":
           viewEmployees();
           break;
 
-        case 'Add a department':
+        case "Add a department":
           addDepartments();
           break;
 
-        case 'Add a role':
+        case "Add a role":
           addRoles();
           break;
 
-        case 'Add an employee':
+        case "Add an employee":
           addEmployees();
           break;
 
-        case 'Edit an employee role':
+        case "Edit an employee role":
           editEmpRoles();
           break;
 
         default:
-          console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
-          console.log('|~-~-~-Now exiting, goodbye!-~-~-~|');
-          console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          console.log("|~-~-~-Now exiting, goodbye!-~-~-~|");
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           db.end();
       }
     });
-};
+}
 
 // Fx to view department(s)
 function viewDepartments() {
@@ -92,9 +98,13 @@ function viewDepartments() {
     }
     console.table(rows);
     // brings up main_menu again
-    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+    init(
+      console.log(
+        "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+      )
+    );
   });
-};
+}
 
 // Fx to view role(s)
 function viewRoles() {
@@ -105,24 +115,35 @@ function viewRoles() {
     }
     console.table(res);
     // brings up main_menu again
-    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+    init(
+      console.log(
+        "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+      )
+    );
   });
-};
+}
 
 // Fx to view employee(s)
 function viewEmployees() {
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query("SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC", function (err, res) {
-    if (err) {
-      console.log(err);
+  db.query(
+    "SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC",
+    function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+      console.table(res);
+      // brings up main_menu again
+      init(
+        console.log(
+          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+        )
+      );
     }
-    console.table(res);
-    // brings up main_menu again
-    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
-  });
-};
+  );
+}
 
 // Fx to add department(s)
 function addDepartments() {
@@ -130,30 +151,35 @@ function addDepartments() {
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
-    .prompt([{
-      type: "input",
-      name: "add_departments",
-      message: "Please name the new department:",
-    },
-    {
-      type: "input",
-      name: "add_departments_id",
-      message: "Please provide the ID for the new department:",
-    }
+    .prompt([
+      {
+        type: "input",
+        name: "add_departments",
+        message: "Please name the new department:",
+      },
+      // {
+      //   type: "input",
+      //   name: "add_departments_id",
+      //   message: "Please provide the ID for the new department:",
+      // }
     ])
-    .then(function (answer) {
+    .then(function (res) {
       db.query(
-        `INSERT INTO department (id, department_name) VALUES (?, ?), department_id, department_name`,
-        [answer.add_departments.add_departments_id],
+        `INSERT INTO department (department_name) VALUES (?)`,
+        [res.add_departments],
         function (err, res) {
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+          init(
+            console.log(
+              "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+            )
+          );
         }
       );
     });
-};
+}
 
 // Fx to add role(s)
 function addRoles() {
@@ -176,78 +202,84 @@ function addRoles() {
         type: "input",
         name: "addrole_dept",
         message: "Which department you want to add to?",
-        // need to figure out how to add new depts to choices -_-
+        // need to figure out how to add new depts to choices -_- cannot use viewDepartments() alone
         choices: ["Surgery", "Nursing", "Research", "Legal", "Administration"],
       },
     ])
-    .then(function (answer) {
+    .then(function (res) {
       db.query(
         // use backticks to insert SQL language!
-        `INSERT INTO role (title, salary, department_id) VALUES ('${answer.addrole_name}', '${answer.addrole_salary}', '${answer.addroledept}');`,
+        `INSERT INTO role (title, salary, department_id) SET (?);`,
+        [res.addrole_name, res.addrole_salary, res.addrole_dept],
         function (err, res) {
           console.table(res);
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
           // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+          init(
+            console.log(
+              "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+            )
+          );
         }
       );
     });
-};
+}
 
 // Fx to add employee(s)
 function addEmployees() {
-    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-    console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
-    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-    inquirer
-    .prompt ([
-        {
-            type: 'input',
-            name: 'employee_dept',
-            message: 'Which department will this employee be in?',
-            choices: ['Surgery', 'Nursing', 'Research', 'Legal', 'Administration']
-        },
-        {
-            type: 'input',
-            name: 'employee_id',
-            message: 'What will be their ID?',
-        },
-        {
-            type: 'input',
-            name: 'employee_first_name',
-            message: 'What is their first name?',
-        },
-        {
-            type: 'input',
-            name: 'employee_last_name',
-            message: 'What is their last name?',
-        },
-        {
-            type: 'input',
-            name: 'employee_salary',
-            message: 'What will be their salary?',
-        },
-        {
-            // ****** figure out how to build choices of current managers...?
-            type: 'input',
-            name: 'employee_manager',
-            message: 'Who will be their manager?',
-        },
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "employee_dept",
+        message: "Which department will this employee be in?",
+        choices: ["Surgery", "Nursing", "Research", "Legal", "Administration"],
+      },
+      {
+        type: "input",
+        name: "employee_id",
+        message: "What will be their ID?",
+      },
+      {
+        type: "input",
+        name: "employee_first_name",
+        message: "What is their first name?",
+      },
+      {
+        type: "input",
+        name: "employee_last_name",
+        message: "What is their last name?",
+      },
+      {
+        type: "input",
+        name: "employee_salary",
+        message: "What will be their salary?",
+      },
+      {
+        // ****** figure out how to build choices of current managers...?
+        type: "input",
+        name: "employee_manager",
+        message: "Who will be their manager?",
+      },
     ])
     .then(function (answer) {
-    db.query (
-        'INSERT INTO employee ',
-        function (err, res) {
-            console.table(res);
-            // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-            console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
-            // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-          }
-    );
-    init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+      db.query("INSERT INTO employee ", function (err, res) {
+        console.table(res);
+        // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+        console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
+        // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+      });
+      init(
+        console.log(
+          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+        )
+      );
     });
-};
+}
 
 // Fx to edit employee role(s)
 function editEmpRoles() {
@@ -307,9 +339,9 @@ function editEmpRoles() {
               .prompt([
                 // displays selections:
                 {
-                  type: 'list',
-                  name: 'edit_emp_role',
-                  message: 'Please select the new role',
+                  type: "list",
+                  name: "edit_emp_role",
+                  message: "Please select the new role",
                   choices: curRolesNames,
                 },
               ])
@@ -337,9 +369,17 @@ function editEmpRoles() {
                     if (err) {
                       console.log(err);
                     } else {
-                      console.log("|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|");
-                      console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-                      init(console.log('|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|'));
+                      console.log(
+                        "|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|"
+                      );
+                      console.log(
+                        "|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|"
+                      );
+                      init(
+                        console.log(
+                          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+                        )
+                      );
                     }
                   }
                 );
@@ -348,4 +388,4 @@ function editEmpRoles() {
         });
     }
   );
-};
+}
