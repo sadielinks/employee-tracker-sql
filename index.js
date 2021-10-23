@@ -13,9 +13,9 @@ const db = mysql.createConnection(
     password: 'xkcd$$00',
     database: 'employee_db',
   },
-  console.log(
-    '|~-~-~-~-~-~-~-~-~-~-| WELCOME TO THE COMPANY DATABASE |~-~-~-~-~-~-~-~--~-~|'
-  )
+  console.log('|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|'),
+  console.log('|~-~-~-~-~-~-~-~-~-~-| * WELCOME TO THE COMPANY DATABASE * |~-~-~-~-~-~-~-~--~-~|'),
+  console.log('|~-~-~-~-~-~-~-~-~-~-| ----------------------------------- |~-~-~-~-~-~-~-~--~-~|')
 );
 
 db.connect(function (err) {
@@ -73,9 +73,9 @@ function init() {
           break;
 
         default:
-          // console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+          console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
           console.log('|~-~-~-Now exiting, goodbye!-~-~-~|');
-          // console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
+          console.log('|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|');
           db.end();
       }
     });
@@ -114,7 +114,7 @@ function viewEmployees() {
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query("SELECT * FROM employee", function (err, res) {
+  db.query("SELECT employee.id, first_name, last_name, title, department_name, department_id, salary, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC", function (err, res) {
     if (err) {
       console.log(err);
     }
