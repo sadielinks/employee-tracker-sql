@@ -186,30 +186,35 @@ function addRoles() {
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A ROLE-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "addrole_name",
-        message: "What is the name of the new role?",
-      },
-      {
-        type: "input",
-        name: "addrole_salary",
-        message: "What is the salary for this role?",
-      },
-      {
-        type: "input",
-        name: "addrole_dept",
-        message: "Which department you want to add to?",
-        // need to figure out how to add new depts to choices -_- cannot use viewDepartments() alone
-        choices: ["Surgery", "Nursing", "Research", "Legal", "Administration"],
-      },
-    ])
+  db.query(`SELECT * FROM department`, (err, res) => {
+    if (err) throw err;
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "addrole_name",
+          message: "What is the name of the new role?",
+        },
+        {
+          type: "input",
+          name: "addrole_salary",
+          message: "What is the salary for this role?",
+        },
+        {
+          type: "input",
+          name: "addrole_dept",
+          message: "Which department you want to add to?",
+          choices: res.map((department) => {
+            return {
+              name: department.department_name, value: department.department_id,
+            };
+          }),
+        },
+      ])
     .then(function (res) {
       db.query(
         // use backticks to insert SQL language!
-        `INSERT INTO role (title, salary, department_id) SET (?);`,
+        `INSERT INTO role VALUES (?,?,?);`,
         [res.addrole_name, res.addrole_salary, res.addrole_dept],
         function (err, res) {
           console.table(res);
