@@ -86,11 +86,11 @@ function viewDepartments() {
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query("SELECT * FROM department", function (err, res) {
+  db.query("SELECT * FROM department", function (err, rows) {
     if (err) {
       console.log(err);
     }
-    console.table(res);
+    console.table(rows);
     // brings up main_menu again
     init();
   });
@@ -239,7 +239,7 @@ function addRoles() {
             // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           }
     );
-    db.end();
+    init();
     });}
 
 // Fx to edit employee role(s)
