@@ -20,7 +20,7 @@ ___
 
 ## Description <br>
 
-This command-line application allows for users to install, run, and maintain a comapny database. Users will be able to view, add, and edit departments, roles, and employees within thier database. 
+This command-line application allows for users to install, run, and maintain a company database. Users will be able to view, add, and edit departments, roles, and employees within their database.
 
 
 ### User Story:
@@ -65,10 +65,7 @@ https://github.com/sadielinks/employee-tracker-sql.git
 git@github.com:sadielinks/employee-tracker-sql.git
 ```
 
-2. They will then need to install the following in their command line:
-```
-npm i
-```
+2. They will then need to run `npm i` in their command line to install the `node_modules` folder necessary for this application.
 
 ## Usage
 
@@ -114,6 +111,7 @@ Command Line - Edit Employee Role Function & Exit
 ```
 Walkthrough Video:
 ```
+https://user-images.githubusercontent.com/87392794/138581404-25c86e24-fd33-4e45-b734-f74e09c24767.mov
 
 
 
