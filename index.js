@@ -89,9 +89,9 @@ function init() {
 
 // Fx to view department(s)
 function viewDepartments() {
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL DEPARTMENTS-~-~-~|");
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM department", function (err, rows) {
     if (err) {
       console.log(err);
