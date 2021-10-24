@@ -108,7 +108,9 @@ function viewDepartments() {
 
 // Fx to view role(s)
 function viewRoles() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL ROLES-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query("SELECT * FROM role", function (err, res) {
     if (err) {
       console.log(err);
@@ -125,7 +127,7 @@ function viewRoles() {
 
 // Fx to view employee(s)
 function viewEmployees() {
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query(
@@ -147,7 +149,7 @@ function viewEmployees() {
 
 // Fx to add department(s)
 function addDepartments() {
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
   // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
@@ -181,127 +183,114 @@ function addDepartments() {
     });
 }
 
-function addRoles(){
-// console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
-//calling inquirer
-inquirer
-  //function to collect user input
-  .prompt([
-    //collecting the role "title"
-    {
-      type: "input",
-      name: "title",
-      message: "What is the name of the role?",
-    },
-    //collecting the salary integer
-    {
-      type: "input",
-      name: "salary",
-      message: "What is the salary for this role?",
-    },
-    //collecting the department id
-    {
-      type: "input",
-      name: "department_id",
-      message: "What corresponding department ID this role will be in?",
-    },
-  ])
-  //promise to do after inquirer prompts collect user infomation
-  .then((data) => {
-    //creating the query for setting the role in the role table
-    const query = "INSERT INTO role SET ?";
-    //making an object of table rows and user input that corresponds to that field
-    const userInput = {
-      title: data.title,
-      salary: data.salary,
-      department_id: data.department_id,
-    };
-    //calling the db file and passing in the query and object of user input to the MySQL database
-    db.query(query, userInput, (err, res) => {
-      //error handling
-      if (err) throw err;
-      //console success message
-      // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-      console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
-      //returning the program to the file containing the inquirer prompts
-      init(
-        console.log(
-          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-        )
-      );
+function addRoles() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the name of the role?",
+      },
+      {
+        type: "input",
+        name: "salary",
+        message: "What is the salary for this role?",
+      },
+      {
+        type: "input",
+        name: "department_id",
+        message: "What corresponding department ID this role will be in?",
+      },
+    ])
+    .then((data) => {
+      const query = "INSERT INTO role SET ?";
+      // create an object from the user inputs
+      const userInput = {
+        title: data.title,
+        salary: data.salary,
+        department_id: data.department_id,
+      };
+      //calling the db file and passing in the query and object of user input to the MySQL database
+      db.query(query, userInput, (err, res) => {
+        //error handling
+        if (err) throw err;
+        //console success message
+        console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+        console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
+        console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+        //returning the program to the file containing the inquirer prompts
+        init(
+          console.log(
+            "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+          )
+        );
+      });
     });
-  });
-};
+}
 
 // Fx to add employee(s)
 function addEmployees() {
-    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-    console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     //function to collect user input
     .prompt([
-      //collecting the employee first name
       {
         type: "input",
         name: "empFirst",
         message: "What is their first name?",
       },
-      //collecting employee last name
       {
         type: "input",
         name: "empLast",
         message: "What is their last name?",
       },
-      //collecting a role id for employee
       {
         type: "input",
         name: "empRole",
         message: "What will be their Employee Role ID?",
       },
-      //collecting the employee id of the manager
       {
         type: "input",
         name: "empMGMT",
-        message:
-          "Please enter their manager's ID number:",
+        message: "Please enter their manager's ID number:",
       },
     ])
-    //promise to do after inquirer prompts collect user information
     .then((data) => {
-      //creating the query for setting the employee in the employee table
       const query = "INSERT INTO employee SET ?";
-      //making an object of table rows and user input tha corresponds to that field
-      const newEmp = {
+      // create an object from the user inputs
+      const userInput = {
         first_name: data.empFirst,
         last_name: data.empLast,
         role_id: data.empRole,
         manager_id: data.empMGMT,
       };
       //calling the db file and passing in the query and object of user input to the MySQL database
-      db.query(query, newEmp, (err, res) => {
+      db.query(query, userInput, (err, res) => {
         //error handling
         if (err) throw err;
         //console success message
-        // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+        console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
         console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
+        console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
         //returning the program to the file containing the inquirer prompts
-        init(console.log("|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-        ));
+        init(
+          console.log(
+            "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+          )
+        );
       });
     });
-};
-
-
-
-
-
-
-
+}
 
 // Fx to edit employee role(s)
 function editEmpRoles() {
   // SQL to pick from db employees
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW EDITING A CURRENT EMPLOYEE ROLE-~-~-~|");
   db.query(
     `SELECT employee.id AS employeeId, concat(employee.first_name, " ", employee.last_name) AS employeeFullName FROM employee`,
@@ -372,7 +361,7 @@ function editEmpRoles() {
                     chosenRoleId = curRoles[i].roleId;
                   }
                 }
-                // com. with the db to update the user input
+                // UPDATE the employee_db
                 db.query(
                   `UPDATE employee SET ? WHERE ?`,
                   [
@@ -387,16 +376,10 @@ function editEmpRoles() {
                     if (err) {
                       console.log(err);
                     } else {
-                      console.log(
-                        "|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|"
-                      );
-                      console.log(
-                        "|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|"
-                      );
-                      init(
-                        console.log(
-                          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-                        )
+                      console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+                      console.log("|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|");
+                      console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+                      init(console.log( "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|")
                       );
                     }
                   }
