@@ -86,25 +86,25 @@ The technologies used to create this program were:
 ```
 Command Line - Welcome & Department Functions
 ```
-![Screenshot](assests/images/screenshot.png)
+![Screenshot](assets/images/screenshot.png)
 
 
 ```
 Command Line - Role Functions
 ```
-![Screenshot](assests/images/screenshot2.png)
+![Screenshot](assets/images/screenshot2.png)
 
 
 ```
 Command Line - Employee Functions
 ```
-![Screenshot](assests/images/screenshot3.png)
+![Screenshot](assets/images/screenshot3.png)
 
 
 ```
 Command Line - Edit Employee Role Function & Exit
 ```
-![Screenshot](assests/images/screenshot4.png)
+![Screenshot](assets/images/screenshot4.png)
 
 
 
