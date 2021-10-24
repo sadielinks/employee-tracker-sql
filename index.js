@@ -182,50 +182,133 @@ function addDepartments() {
 }
 
 // Fx to add role(s)
-function addRoles() {
-    db.query(`SELECT * FROM department`, (err, res) => {
+// function addRoles() {
+//     db.query(`SELECT * FROM department`, (err, res) => {
+//       if (err) throw err;
+//       inquirer
+//         .prompt([
+//           {
+//             type: "input",
+//             name: "title",
+//             message: "Please enter title of new role.",
+//           },
+//           {
+//             type: "input",
+//             name: "salary",
+//             message: "Please enter salary for new role.",
+//           },
+//           {
+//             type: "list",
+//             name: "department_id",
+//             message: "Please select the department the new role is in.",
+//             choices: res.map((department) => {
+//               return {
+//                 name: department.department_name, 
+//                 value: department.department_id,
+//               };
+//             }),
+//           },
+//         ])
+//         .then(function (res) {
+//           db.query(
+//             `INSERT INTO role VALUES (?,?,?,?)`,
+//             [res.department_id, res.title, res.salary, res.department_id],
+//             function (err) {
+//               if (err) throw err;
+//               console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
+//               init(
+//                 console.log(
+//                   "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+//                 )
+//               );
+//             }
+//           );
+//         });
+//     });
+//   };
+
+function addRoles(){
+// console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
+//calling inquirer
+inquirer
+  //function to collect user input
+  .prompt([
+    //collecting the role "title"
+    {
+      type: "input",
+      name: "title",
+      message: "What is the name of the role?",
+    },
+    //collecting the salary integer
+    {
+      type: "input",
+      name: "salary",
+      message: "What is the salary for this role?",
+    },
+    //collecting the department id
+    {
+      type: "input",
+      name: "department_id",
+      message: "What corresponding department ID this role will be in?",
+    },
+  ])
+  //promise to do after inquirer prompts collect user infomation
+  .then((data) => {
+    //creating the query for setting the role in the role table
+    const query = "INSERT INTO role SET ?";
+    //making an object of table rows and user input that corresponds to that field
+    const userInput = {
+      title: data.title,
+      salary: data.salary,
+      department_id: data.department_id,
+    };
+    //calling the db file and passing in the query and object of user input to the MySQL database
+    db.query(query, userInput, (err, res) => {
+      //error handling
       if (err) throw err;
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "title",
-            message: "Please enter title of new role.",
-          },
-          {
-            type: "input",
-            name: "salary",
-            message: "Please enter salary for new role.",
-          },
-          {
-            type: "list",
-            name: "department_id",
-            message: "Please select the department the new role is in.",
-            choices: res.map((department) => {
-              return {
-                name: department.department_name, 
-                value: department.department_id,
-              };
-            }),
-          },
-        ])
-        .then(function (res) {
-          db.query(
-            `INSERT INTO role VALUES (?,?,?,?)`,
-            [res.department_id, res.title, res.salary, res.department_id],
-            function (err) {
-              if (err) throw err;
-              console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
-              init(
-                console.log(
-                  "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-                )
-              );
-            }
-          );
-        });
+      //console success message
+      // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+      console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
+      //returning the program to the file containing the inquirer prompts
+      init(
+        console.log(
+          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+        )
+      );
     });
-  };
+  });
+};
+
+
+// MY ADDROLES FX
+//   inquirer
+//   .prompt([
+//       {
+//           type: 'input',
+//           name: 'title',
+//           message: 'What is the name of the role?',
+          
+//       },
+//       {
+//           type: 'input',
+//           name: 'salary',
+//           message: 'What is the salary for this role?',
+          
+//       },
+//       {
+//           type: 'input',
+//           name: 'department_id ',
+//           // Future Dev - have the list appear here too!
+//           message: 'What department ID this role will be in?',
+          
+//       },
+//   ]) .then((data) => {
+//       db.query(`INSERT INTO roles VALUES (?)`, data.roles)
+
+//       askQuestions();
+//   })
+// }
   
 
 
