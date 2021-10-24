@@ -181,52 +181,6 @@ function addDepartments() {
     });
 }
 
-// Fx to add role(s)
-// function addRoles() {
-//     db.query(`SELECT * FROM department`, (err, res) => {
-//       if (err) throw err;
-//       inquirer
-//         .prompt([
-//           {
-//             type: "input",
-//             name: "title",
-//             message: "Please enter title of new role.",
-//           },
-//           {
-//             type: "input",
-//             name: "salary",
-//             message: "Please enter salary for new role.",
-//           },
-//           {
-//             type: "list",
-//             name: "department_id",
-//             message: "Please select the department the new role is in.",
-//             choices: res.map((department) => {
-//               return {
-//                 name: department.department_name, 
-//                 value: department.department_id,
-//               };
-//             }),
-//           },
-//         ])
-//         .then(function (res) {
-//           db.query(
-//             `INSERT INTO role VALUES (?,?,?,?)`,
-//             [res.department_id, res.title, res.salary, res.department_id],
-//             function (err) {
-//               if (err) throw err;
-//               console.log("|~-~-~- YES, NEW ROLE ADDED!-~-~-~|");
-//               init(
-//                 console.log(
-//                   "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-//                 )
-//               );
-//             }
-//           );
-//         });
-//     });
-//   };
-
 function addRoles(){
 // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
 console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
@@ -279,36 +233,6 @@ inquirer
     });
   });
 };
-
-
-// MY ADDROLES FX
-//   inquirer
-//   .prompt([
-//       {
-//           type: 'input',
-//           name: 'title',
-//           message: 'What is the name of the role?',
-          
-//       },
-//       {
-//           type: 'input',
-//           name: 'salary',
-//           message: 'What is the salary for this role?',
-          
-//       },
-//       {
-//           type: 'input',
-//           name: 'department_id ',
-//           // Future Dev - have the list appear here too!
-//           message: 'What department ID this role will be in?',
-          
-//       },
-//   ]) .then((data) => {
-//       db.query(`INSERT INTO roles VALUES (?)`, data.roles)
-
-//       askQuestions();
-//   })
-// }
   
 
 
