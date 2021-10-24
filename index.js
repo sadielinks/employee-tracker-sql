@@ -38,10 +38,10 @@ function init() {
       message: "What would you like to do?",
       choices: [
         "View all departments",
-        "View all roles",
-        "View all employees",
         "Add a department",
+        "View all roles",
         "Add a role",
+        "View all employees",
         "Add an employee",
         "Edit an employee role",
         "Exit",
@@ -54,20 +54,20 @@ function init() {
           viewDepartments();
           break;
 
-        case "View all roles":
-          viewRoles();
-          break;
-
-        case "View all employees":
-          viewEmployees();
-          break;
-
         case "Add a department":
           addDepartments();
           break;
 
+        case "View all roles":
+          viewRoles();
+          break;
+
         case "Add a role":
           addRoles();
+          break;
+
+        case "View all employees":
+          viewEmployees();
           break;
 
         case "Add an employee":
@@ -106,47 +106,6 @@ function viewDepartments() {
   });
 }
 
-// Fx to view role(s)
-function viewRoles() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  console.log("|~-~-~-NOW VIEWING ALL ROLES-~-~-~|");
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query("SELECT * FROM role", function (err, res) {
-    if (err) {
-      console.log(err);
-    }
-    console.table(res);
-    // brings up main_menu again
-    init(
-      console.log(
-        "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-      )
-    );
-  });
-}
-
-// Fx to view employee(s)
-function viewEmployees() {
-  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  db.query(
-    "SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC",
-    function (err, res) {
-      if (err) {
-        console.log(err);
-      }
-      console.table(res);
-      // brings up main_menu again
-      init(
-        console.log(
-          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-        )
-      );
-    }
-  );
-}
-
 // Fx to add department(s)
 function addDepartments() {
   console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
@@ -183,6 +142,26 @@ function addDepartments() {
     });
 }
 
+// Fx to view role(s)
+function viewRoles() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-NOW VIEWING ALL ROLES-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  db.query("SELECT * FROM role", function (err, res) {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    // brings up main_menu again
+    init(
+      console.log(
+        "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+      )
+    );
+  });
+}
+
+// Fx to add role(s)
 function addRoles() {
   console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
@@ -229,6 +208,28 @@ function addRoles() {
         );
       });
     });
+}
+
+// Fx to view employee(s)
+function viewEmployees() {
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
+  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  db.query(
+    "SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC",
+    function (err, res) {
+      if (err) {
+        console.log(err);
+      }
+      console.table(res);
+      // brings up main_menu again
+      init(
+        console.log(
+          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+        )
+      );
+    }
+  );
 }
 
 // Fx to add employee(s)
@@ -376,10 +377,19 @@ function editEmpRoles() {
                     if (err) {
                       console.log(err);
                     } else {
-                      console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-                      console.log("|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|");
-                      console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-                      init(console.log( "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|")
+                      console.log(
+                        "|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|"
+                      );
+                      console.log(
+                        "|~-~-~-YES,  EMPLOYEE ROLE SUCCESSFULLY UPDATED!-~-~-~|"
+                      );
+                      console.log(
+                        "|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|"
+                      );
+                      init(
+                        console.log(
+                          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+                        )
                       );
                     }
                   }
