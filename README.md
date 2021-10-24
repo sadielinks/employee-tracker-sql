@@ -20,8 +20,7 @@ ___
 
 ## Description <br>
 
-This is a WORK IN PROGRESS
-
+This command-line application allows for users to install, run, and maintain a comapny database. Users will be able to view, add, and edit departments, roles, and employees within thier database. 
 
 
 ### User Story:
@@ -54,16 +53,28 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Installation
 
-1. 
+1. Users will need to use `git clone` to clone this repo into their repository. 
 
+- HTTPS
 ```
+https://github.com/sadielinks/employee-tracker-sql.git
 ```
 
+- SSH
 ```
+git@github.com:sadielinks/employee-tracker-sql.git
 ```
 
+2. They will then need to install the following in their command line:
+```
+npm i
+```
 
 ## Usage
+
+After the installation process, users will then need to run `node index.js`.
+
+They will then be presented with the database welcome screen and a menu to view, add, or edit the database.
 
 
 ## Technologies
@@ -76,25 +87,41 @@ The technologies used to create this program were:
 
 ## Screenshots
 ```
-Generated Team HTML:
+Command Line - Welcome & Department Functions
 ```
 ![Screenshot](assests/images/screenshot.png)
 
+
 ```
-Command Line question/answer:
+Command Line - Role Functions
 ```
 ![Screenshot](assests/images/screenshot2.png)
+
+
+```
+Command Line - Employee Functions
+```
+![Screenshot](assests/images/screenshot3.png)
+
+
+```
+Command Line - Edit Employee Role Function & Exit
+```
+![Screenshot](assests/images/screenshot4.png)
+
+
 
 ```
 Walkthrough Video:
 ```
 
 
+
 <br>
 
 ## Links
 
-- [Walkthrough Video]()
+- [Walkthrough Video](https://watch.screencastify.com/v/53gR2d5FKiyu8u2JSQAW)
 
 - [GitHub Repository](https://github.com/sadielinks/employee-tracker-sql)
 
