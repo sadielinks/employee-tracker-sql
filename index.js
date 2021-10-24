@@ -233,63 +233,71 @@ inquirer
     });
   });
 };
-  
-
 
 // Fx to add employee(s)
 function addEmployees() {
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
-  console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+    console.log("|~-~-~-NOW ADDING  AN EMPLOYEE-~-~-~|");
   inquirer
+    //function to collect user input
     .prompt([
+      //collecting the employee first name
       {
         type: "input",
-        name: "employee_dept",
-        message: "Which department will this employee be in?",
-        choices: ["Surgery", "Nursing", "Research", "Legal", "Administration"],
-      },
-      {
-        type: "input",
-        name: "employee_id",
-        message: "What will be their ID?",
-      },
-      {
-        type: "input",
-        name: "employee_first_name",
+        name: "empFirst",
         message: "What is their first name?",
       },
+      //collecting employee last name
       {
         type: "input",
-        name: "employee_last_name",
+        name: "empLast",
         message: "What is their last name?",
       },
+      //collecting a role id for employee
       {
         type: "input",
-        name: "employee_salary",
-        message: "What will be their salary?",
+        name: "empRole",
+        message: "What will be their Employee Role ID?",
       },
+      //collecting the employee id of the manager
       {
-        // ****** figure out how to build choices of current managers...?
         type: "input",
-        name: "employee_manager",
-        message: "Who will be their manager?",
+        name: "empMGMT",
+        message:
+          "Please enter their manager's ID number:",
       },
     ])
-    .then(function (answer) {
-      db.query("INSERT INTO employee ", function (err, res) {
-        console.table(res);
+    //promise to do after inquirer prompts collect user information
+    .then((data) => {
+      //creating the query for setting the employee in the employee table
+      const query = "INSERT INTO employee SET ?";
+      //making an object of table rows and user input tha corresponds to that field
+      const newEmp = {
+        first_name: data.empFirst,
+        last_name: data.empLast,
+        role_id: data.empRole,
+        manager_id: data.empMGMT,
+      };
+      //calling the db file and passing in the query and object of user input to the MySQL database
+      db.query(query, newEmp, (err, res) => {
+        //error handling
+        if (err) throw err;
+        //console success message
         // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
         console.log("|~-~-~- YES, NEW EMPLOYEE ADDED!-~-~-~|");
-        // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+        //returning the program to the file containing the inquirer prompts
+        init(console.log("|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
+        ));
       });
-      init(
-        console.log(
-          "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
-        )
-      );
     });
-}
+};
+
+
+
+
+
+
+
 
 // Fx to edit employee role(s)
 function editEmpRoles() {
