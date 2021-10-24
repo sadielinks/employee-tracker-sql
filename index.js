@@ -110,7 +110,7 @@ function viewDepartments() {
 function addDepartments() {
   console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW ADDING A DEPARTMENT-~-~-~|");
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   inquirer
     .prompt([
       {
@@ -129,9 +129,9 @@ function addDepartments() {
         `INSERT INTO department (department_name) VALUES (?)`,
         [res.add_departments],
         function (err, res) {
-          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           console.log("|~-~-~-YES,  NEW DEPARTMENT ADDED!-~-~-~|");
-          // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+          console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
           init(
             console.log(
               "|~-~-~-~-~-~-~-~-~-~-| WELCOME BACK TO THE COMPANY DATABASE MENU |~-~-~-~-~-~-~-~--~-~|"
@@ -214,7 +214,7 @@ function addRoles() {
 function viewEmployees() {
   console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW VIEWING ALL EMPLOYEES-~-~-~|");
-  // console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query(
     "SELECT employee.id, first_name, last_name, title, department_name, department_id, manager_id FROM department INNER JOIN role ON department.id = role.department_id INNER JOIN employee ON role.id = employee.role_id ORDER BY employee.id ASC",
     function (err, res) {
@@ -293,6 +293,7 @@ function editEmpRoles() {
   // SQL to pick from db employees
   console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   console.log("|~-~-~-NOW EDITING A CURRENT EMPLOYEE ROLE-~-~-~|");
+  console.log("|~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~|");
   db.query(
     `SELECT employee.id AS employeeId, concat(employee.first_name, " ", employee.last_name) AS employeeFullName FROM employee`,
     (err, res) => {
