@@ -53,7 +53,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Installation
 
-1. Users will need to use `git clone` to clone this repo into their repository. 
+1. Users will need to use `git clone` to clone this repo into their local drive. 
 
 - HTTPS
 ```
